@@ -9,7 +9,7 @@ Host the Orchard.js code somewhere you can access and pull it into a scripting s
 ```JavaScript
 testmac: ~$ osascript -l JavaScript -i
 >> eval(ObjC.unwrap($.NSString.alloc.initWithDataEncoding($.NSData.dataWithContentsOfURL($.NSURL.URLWithString('http://192.168.56.1:8080/Orchard.js')),$.NSUTF8StringEncoding)));
-=> undefined
+=> true
 >> Get_CurrentDomain();
 => "test.local"
 >>
