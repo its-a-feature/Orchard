@@ -1,3 +1,4 @@
+//Author Cody Thomas, @its_a_feature_
 ObjC.import("Foundation");
 ObjC.import("stdio");
 //for all of these, there is a switch to use ObjC calls vs terminal calls
