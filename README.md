@@ -27,7 +27,7 @@ This means that every command does the following: `currApp.doShellScript(command
 ## Calling a Function
 After you've imported the Orchard.js code into your current session, you can call any of the functions with a slight tweak to normal JavaScript function calls. I wanted to make the code a bit more python-esque, so I modified the calling convention. You'll see functions defined as:
 
-`function ConvertTo_SID({API=false, object=".\\root", type="Users} = {}) { code here; }`. This allows me to provide default values (if desired) to each function parameter as well as preventing them from being positional arguments like standard function calls. To call this function, simply do any of the following:
+`function ConvertTo_SID({API=false, object=".\\root", type="Users"} = {}) { code here; }`. This allows me to provide default values (if desired) to each function parameter as well as preventing them from being positional arguments like standard function calls. To call this function, simply do any of the following:
 ```JavaScript
 ConvertTo_SID(); //Uses all of the default values to call the function
 ConvertTo_SID({object:"TEST\\Domain Admins", type:"Groups"}); //leaves API as false, but sets object and type
