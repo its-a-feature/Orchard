@@ -9,21 +9,22 @@ function ConvertTo_SID({API=false, object=".\\root", type="Users",help=false} = 
 	//goes from "Domain\User" or "Domain\Group" or "Domain\Computer" to SID
 	//type should be: Users, Groups, or Computers
 	if(help){
-		console.log("Convert Users, Groups, Or Computers to domain or local SIDs.");
-		console.log("\"object\" should be either \".\\\\localthing\" or \"NETBIOSDOMAIN\\\\thing\"");
-		console.log("\"type\" should be \"Users\", \"Groups\", or \"Computers\"");
-		console.log("called: ConvertTo_SID({object:\".\\\\root\",type:\"Users\"});");
-		return;
+	    var output = "";
+		output += "\\nConvert Users, Groups, Or Computers to domain or local SIDs.";
+		output += "\\n\"object\" should be either \".\\\\localthing\" or \"NETBIOSDOMAIN\\\\thing\"";
+		output += "\\n\"type\" should be \"Users\", \"Groups\", or \"Computers\"";
+		output += "\\ncalled: ConvertTo_SID({object:\".\\\\root\",type:\"Users\"});";
+		return output;
 	}
 	command = "";
 	splitObject = object.split('\\');
 	if (splitObject.length != 2)
 	{
-		console.log("Invalid format for the object. Should be DOMAIN\\object\n");
-		return;
+		return "Invalid format for the object. Should be DOMAIN\\object\n";
 	}
 	if (API == true) {
 		//Use ObjC calls
+		return "API method not implemented yet";
 	}
 	else{
 		//use command-line functionality
@@ -41,31 +42,31 @@ function ConvertTo_SID({API=false, object=".\\root", type="Users",help=false} = 
 			if (output.indexOf("SMBSID: S-") != -1)
 				return output.split(" ")[1].trim();
 			else
-				return;
+				return "No such key";
 		}
 		catch(err){
 			//<dscl_cmd> DS Error: -14136 (eDSRecordNotFound) if object doesn't exist
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
 function ConvertFrom_SID({API=false, sid="S-1-5-21-3278496235-3004902057-1244587532-512", type="Users",help=false} = {}){
 	//goes from S-1-5-21-... to "Domain\User", "Domain\Group", or "Domain\Computer"
 	if(help){
-		console.log("Convert Users, Groups, or Computers from SIDs to names");
-		console.log("\"sid\" should be a full SID value in quotes for either a User, Group, or Computer. No other type is currently supported.");
-		console.log("\"type\" should be \"Users\",\"Groups\", or \"Computers\"");
-		console.log("called: ConvertFrom_SID({sid:\"S-1-5-21-3278496235-3004902057-1244587532-512\",type:\"Users\"})");
-		return;
+	    var output = "";
+		output += "\\nConvert Users, Groups, or Computers from SIDs to names";
+		output += "\\n\"sid\" should be a full SID value in quotes for either a User, Group, or Computer. No other type is currently supported.";
+		output += "\\n\"type\" should be \"Users\",\"Groups\", or \"Computers\"";
+		output += "\\ncalled: ConvertFrom_SID({sid:\"S-1-5-21-3278496235-3004902057-1244587532-512\",type:\"Users\"})";
+		return output;
 	}
 	command = "";
 	domain = Get_CurrentNETBIOSDomain(API);
 	if (!domain){
-		return;
+		return "Failed to get domain.";
 	}
 	if (API == true){
-
+        return "API method not implemented yet."
 	}
 	else{
 		command = "dscl \"/Active Directory/" + domain + "/All Domains\"" +
@@ -81,11 +82,10 @@ function ConvertFrom_SID({API=false, sid="S-1-5-21-3278496235-3004902057-1244587
 				user = output.split("\n")[0].split("\t")[0].trim();
 				return user;
 			}
-			return;
+			return "Command executed returned no output: " + command;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
@@ -97,13 +97,14 @@ function Get_PathAcl({API=false, path="/",help=false} = {}){
 	//https://support.apple.com/kb/PH25344?locale=en_US&viewlocale=en_US
 	//	check out that affects things if I still need to deal with the right prefix
 	if(help){
-		console.log("Get linux and mac specific ACLs on a file or folder.");
-		console.log("\"path\" should be any FULL path to a local file or folder. Be careful about escaping quotes though.");
-		console.log("called: Get_PathAcl({path:\"/Users/useraccount/Desktop\"});");
-		return;
+	    var output = "";
+		output += "\\nGet linux and mac specific ACLs on a file or folder.";
+		output += "\\n\"path\" should be any FULL path to a local file or folder. Be careful about escaping quotes though.";
+		output += "\\ncalled: Get_PathAcl({path:\"/Users/useraccount/Desktop\"});";
+		return output;
 	}
 	if (API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		try{
@@ -115,7 +116,7 @@ function Get_PathAcl({API=false, path="/",help=false} = {}){
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
+			return err.toString();
 		}
 	}
 }
@@ -123,15 +124,16 @@ function Get_PathXattr({API=false, path="/", recurse=true, value=true,help=false
 	//Similar to getting ACLs on a file/folder, this gets the extended attributes for it (xattr)
 	//can also get these with "ls -l@"
 	if(help){
-		console.log("Get mac specific extended attributes on a file or folder.");
-		console.log("\"path\" should be any FULL path to a file or folder. Be careful about escaping quotes though.");
-		console.log("\"recurse\" should be true if you want to recursively view the extended attributes.");
-		console.log("\"value\" should be true if you also want to see the value of the attribute. Default is true.");
-		console.log("called: Get_PathXattr({path:\"/Users/useraccount\",recurse:true});");
-		return;
+	    var output = "";
+		output += "\\nGet mac specific extended attributes on a file or folder.";
+		output += "\\n\"path\" should be any FULL path to a file or folder. Be careful about escaping quotes though.";
+		output += "\\n\"recurse\" should be true if you want to recursively view the extended attributes.";
+		output += "\\n\"value\" should be true if you also want to see the value of the attribute. Default is true.";
+		output += "\\ncalled: Get_PathXattr({path:\"/Users/useraccount\",recurse:true});";
+		return output;
 	}
 	if(API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		command = "xattr";
@@ -147,8 +149,7 @@ function Get_PathXattr({API=false, path="/", recurse=true, value=true,help=false
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
@@ -157,12 +158,13 @@ function Get_MountedVolumes({API=false,help=false} = {}){
 	//remote ones will be like:
 	// //user@host/share size size size % size size % /mount/point
 	if(help){
-		console.log("Get the mounted volumes on the current computer");
-		console.log("called: Get_MountedVolumes()");
-		return;
+	    var output = "";
+		output += "\\nGet the mounted volumes on the current computer";
+		output += "\\ncalled: Get_MountedVolumes()";
+		return output;
 	}
 	if (API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		try{
@@ -170,27 +172,27 @@ function Get_MountedVolumes({API=false,help=false} = {}){
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
 function Set_MountVolume({API=false, user="", pass="", computerName="", remotePath="", localPath="", type="ntfs",help=false} = {}){
 	//mount remote volumes
 	if(help){
-		console.log("Mount a remote share on the current computer");
-		console.log("\"user\" should be a username in quotes.");
-		console.log("\"pass\" should be the password in quotes. This will be escaped with the JavaScript escape function.");
-		console.log("\"computerName\" is the name of the remote machine that has the share we want to mount.");
-		console.log("\"remotePath\" is the remote share we want to mount, such as \"ADMIN$\".");
-		console.log("\"localPath\" is the local mount point. This should already be created.");
-		console.log("\"type\" will typically be ntfs (which is default) for mounting windows shares.");
-		console.log("called: Set_MountVolume({user:\"mac\",pass:\"abc123!!!\",computerName:\"dc\",remotePath:\"ADMIN$\",localPath:\"/Users/localuser/testmount\"});");
-		return;
+	    var output = "";
+		output += "\\nMount a remote share on the current computer";
+		output += "\\n\"user\" should be a username in quotes.";
+		output += "\\n\"pass\" should be the password in quotes. This will be escaped with the JavaScript escape function.";
+		output += "\\n\"computerName\" is the name of the remote machine that has the share we want to mount.";
+		output += "\\n\"remotePath\" is the remote share we want to mount, such as \"ADMIN$\".";
+		output += "\\n\"localPath\" is the local mount point. This should already be created.";
+		output += "\\n\"type\" will typically be ntfs (which is default) for mounting windows shares.";
+		output += "\\ncalled: Set_MountVolume({user:\"mac\",pass:\"abc123!!!\",computerName:\"dc\",remotePath:\"ADMIN$\",localPath:\"/Users/localuser/testmount\"});";
+		return output;
 	}
 	command = "mount -t ";
 	if (API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		if(type == "ntfs"){
@@ -201,101 +203,146 @@ function Set_MountVolume({API=false, user="", pass="", computerName="", remotePa
 		}
 		command += " //" + user + ":" + escape(pass) + "@" + computerName + "/" + remotePath + " " + localPath;
 		//example: mount -t smbfs //mac:abc123%21%21%21@dc/ADMIN$ /Users/testuser/testmount
-		console.log(command);
+		//console.log(command);
 		try{
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
-function Get_DomainUser({API=false, user, attributes, requested_domain,help=false} = {}){
+function Get_DomainUser({API=false, user, attribute, requested_domain,help=false} = {}){
 	//returns all users or specific user objects in AD
 	//can specify different properties they want returned
 	if(help){
-		console.log("List all domain users or get information on a specific user. If no user is specified, list all users.");
-		console.log("\"user\" should be a domain name.")
-		console.log("\"attributes\" should be a comma separated list of attributes to select from the returned user. This only works in conjunction with a specific user, not when listing out all users.");
-		console.log("\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.");
-		console.log("called: Get_DomainUser() <--- list out all domain users");
-		console.log("called: Get_DomainUser({user:\"bob\",attributes:\"name, SMBSID\"});");
-		return;
+	    var output = "";
+		output += "\\nList all domain users or get information on a specific user. If no user is specified, list all users.";
+		output += "\\n\"user\" should be a domain name.";
+		output += "\\n\"attributes\" should be a comma separated list of attributes to select from the returned user. This only works in conjunction with a specific user, not when listing out all users.";
+		output += "\\n\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.";
+		output += "\\ncalled: Get_DomainUser() <--- list out all domain users";
+		output += "\\ncalled: Get_DomainUser({user:\"bob\",attribute:\"name, SMBSID\"});";
+		return output;
 	}
 	if (API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		domain = requested_domain ? requested_domain : Get_CurrentNETBIOSDomain(API);
 		if(user){
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" read /Users/" + user;
-			if(attributes){
-				command += " " + attributes;
+			if(attribute){
+				command += " " + attribute;
 			}
 		}
 		else{
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" ls /Users";
+			if(attribute){
+			    command += " " + attribute;
+			}
 		}
 		try{
+		    //console.log(command);
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
-function Get_DomainComputer({API=false, computer, attributes, requested_domain,help=false} = {}){
-	//returns all computers or specific computer objects in AD
+function Get_LocalUser({API=false, user, attribute, help=false} = {}){
+	//returns all users or specific user objects in AD
+	//can specify different properties they want returned
 	if(help){
-		console.log("List all domain computers or get information on a specific computer. If no computer is specified, list all computer.");
-		console.log("\"computer\" should be a domain computer name.")
-		console.log("\"attributes\" should be a comma separated list of attributes to select from the returned computer. This only works in conjunction with a specific computer, not when listing out all computers.");
-		console.log("\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.");
-		console.log("called: Get_DomainComputer() <--- list out all domain computers");
-		console.log("called: Get_DomainComputer({computer:\"testmac$\",attributes:\"name\"});");
-		return;
+	    var output = "";
+		output += "\\nList all local users or get information on a specific user. If no user is specified, list all users.";
+		output += "\\n\"user\" should be a local user's name.";
+		output += "\\n\"attributes\" should be a comma separated list of attributes to select from the returned user. This only works in conjunction with a specific user, not when listing out all users.";
+		output += "\\ncalled: Get_LocalUser() <--- list out all local users";
+		output += "\\ncalled: Get_LocalUser({user:\"bob\",attribute:\"name, SMBSID\"});";
+		return output;
 	}
 	if (API == true){
-
+        return "API method not implemented yet";
+	}
+	else{
+		if(user){
+			command = "dscl . read /Users/" + user;
+			if(attribute){
+				command += " " + attribute;
+			}
+		}
+		else{
+			command = "dscl . ls /Users";
+			if(attribute){
+			    command += " " + attribute;
+			}
+		}
+		try{
+		    //console.log(command);
+			output = currApp.doShellScript(command);
+			return output;
+		}
+		catch(err){
+			return err.toString();
+		}
+	}
+}
+function Get_DomainComputer({API=false, computer, attribute, requested_domain,help=false} = {}){
+	//returns all computers or specific computer objects in AD
+	if(help){
+	    var output = "";
+		output += "\\nList all domain computers or get information on a specific computer. If no computer is specified, list all computer.";
+		output += "\\n\"computer\" should be a domain computer name.";
+		output += "\\n\"attributes\" should be a comma separated list of attributes to select from the returned computer. This only works in conjunction with a specific computer, not when listing out all computers.";
+		output += "\\n\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.";
+		output += "\\ncalled: Get_DomainComputer() <--- list out all domain computers";
+		output += "\\ncalled: Get_DomainComputer({computer:\"testmac$\",attribute:\"name\"});";
+		return output;
+	}
+	if (API == true){
+        return "API method not implemented";
 	}
 	else{
 		domain = requested_domain ? requested_domain : Get_CurrentNETBIOSDomain(API);
 		if(computer){
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" read \"/Computers/" + computer + "\"";
-			if(attributes){
-				command += " " + attributes;
+			if(attribute){
+				command += " " + attribute;
 			}
 		}
 		else{
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" ls /Computers";
+			if(attribute){
+			    command += " " + attribute;
+			}
 		}
 		try{
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
-function Get_LDAPSearch({API=false, currDomain, remoteDomain, numResults=0, query="", attributes,help=false} = {}){
+function Get_LDAPSearch({API=false, currDomain, remoteDomain, numResults=0, query="", attribute,help=false} = {}){
 	if(help){
-		console.log("Execute a customized LDAP search query");
-		console.log("\"currDomain\" should be the domain to query. Ex: in ldap://currDomain.");
-		console.log("\"remoteDomain\" should be the search base, typically the same as the currDomain, so it can be left out.");
-		console.log("\"numResults\" specifies how many results to return where 0 indicates all results.");
-		console.log("\"query\" is the LDAP query.");
-		console.log("\"attributes\" is a comma separated list of attributes to selet from the query results.");
-		console.log("called: Get_LDAPSearch({query=\"(objectclass=user)\"})");
-		return;
+	    var output = "";
+		output += "\\nExecute a customized LDAP search query";
+		output += "\\n\"currDomain\" should be the domain to query. Ex: in ldap://currDomain.";
+		output += "\\n\"remoteDomain\" should be the search base, typically the same as the currDomain, so it can be left out.";
+		output += "\\n\"numResults\" specifies how many results to return where 0 indicates all results.";
+		output += "\\n\"query\" is the LDAP query.";
+		output += "\\n\"attributes\" is a comma separated list of attributes to selet from the query results.";
+		output += "\\ncalled: Get_LDAPSearch({query=\"(objectclass=user)\"})";
+		return output;
 	}
 	if(API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		domain = currDomain ? currDomain : Get_CurrentDomain(API);
@@ -308,64 +355,67 @@ function Get_LDAPSearch({API=false, currDomain, remoteDomain, numResults=0, quer
 			}
 		}
 		command = "ldapsearch -H ldap://" + domain + " -b " + rdomain + " -z " + numResults + " \"" + query + "\" ";
-		if(attributes){
-			command += attributes;
+		if(attribute){
+			command += attribute;
 		}
-		console.log(command);
+		//console.log(command);
 		try{
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
-function Get_DomainOU({API=false, OU, attributes, requested_domain,help=false} = {}){
+function Get_DomainOU({API=false, OU, attribute, requested_domain,help=false} = {}){
 	//search for all OUs or specific OU objects in AD
 	if(help){
-		console.log("List all domain OUs or get information on a specific OU. If no OU is specified, list all OUs.");
-		console.log("\"OU\" should be a domain OU name.")
-		console.log("\"attributes\" should be a comma separated list of attributes to select from the returned OU. This only works in conjunction with a specific OU, not when listing out all OUs.");
-		console.log("\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.");
-		console.log("called: Get_DomainOU() <--- list out all domain computers");
-		console.log("called: Get_DomainOU({OU:\"Domain Controllers\"});");
-		return;
+	    var output = "";
+		output += "\\nList all domain OUs or get information on a specific OU. If no OU is specified, list all OUs.";
+		output += "\\n\"OU\" should be a domain OU name.";
+		output += "\\n\"attributes\" should be a comma separated list of attributes to select from the returned OU. This only works in conjunction with a specific OU, not when listing out all OUs.";
+		output += "\\n\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.";
+		output += "\\ncalled: Get_DomainOU() <--- list out all domain computers";
+		output += "\\ncalled: Get_DomainOU({OU:\"Domain Controllers\"});";
+		return output;
 	}
 	if (API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		domain = requested_domain ? requested_domain : Get_CurrentNETBIOSDomain(API);
 		if(OU){
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" read \"/OrganizationalUnit/" + OU + "\"";
-			if(attributes){
-				command += " " + attributes;
+			if(attribute){
+				command += " " + attribute;
 			}
 		}
 		else{
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" ls /OrganizationalUnit";
+			if(attribute){
+			    command += " " + attribute;
+			}
 		}
 		try{
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
 function Get_DomainSID({API=false,help=false} = {}){
 	//returns SID for current domain or specified domain
 	if(help){
-		console.log("Gets the SID of the domain by truncating the SID for the \"Domain Admins\" group.");
-		console.log("called: Get_DomainSID()");
-		return;
+	    var output = "";
+		output += "\\nGets the SID of the domain by truncating the SID for the \"Domain Admins\" group.";
+		output += "\\ncalled: Get_DomainSID()";
+		return output;
 	}
 	if(API == true){
-
+        return "API method no implemented yet";
 	}
 	else{
 		command = "dsmemberutil getsid -G \"Domain Admins\"";
@@ -374,85 +424,269 @@ function Get_DomainSID({API=false,help=false} = {}){
 			return output.slice(0,-4); //take off the last -512 on the SID that's specific to Domain Admins group
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
-function Get_DomainGroup({API=false, group, attributes, requested_domain,help=false} = {}){
+function Get_DomainGroup({API=false, group, attribute, requested_domain,help=false,verbose=false} = {}){
 	//returns all groups or specific groups in an AD
 	if(help){
-		console.log("List all domain groups or get information on a specific group. If no group is specified, list all groups.");
-		console.log("\"group\" should be a domain group name.")
-		console.log("\"attributes\" should be a comma separated list of attributes to select from the returned group. This only works in conjunction with a specific group, not when listing out all group.");
-		console.log("\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.");
-		console.log("called: Get_DomainGroup() <--- list out all domain groups");
-		console.log("called: Get_DomainGroup({group:\"Domain Admins\",attributes:\"GroupMembership\"});");
-		return;
+	    var output = "";
+		output += "\\nList all domain groups or get information on a specific group. If no group is specified, list all groups.";
+		output += "\\n\"group\" should be a domain group name.";
+		output += "\\n\"attributes\" should be a comma separated list of attributes to select from the returned group. This only works in conjunction with a specific group, not when listing out all group.";
+		output += "\\n\"requested_domain\" should be the NETBIOS domain name to query. Most often this will be left blank and auto filled by the function.";
+		output += "\\ncalled: Get_DomainGroup() <--- list out all domain groups";
+		output += "\\ncalled: Get_DomainGroup({group:\"Domain Admins\",attribute:\"GroupMembership\"});";
+		return output;
 	}
 	if(API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		domain = requested_domain ? requested_domain : Get_CurrentNETBIOSDomain(API);
 		if(group){
-			command = "dscl \"/Active Directory/" + domain + "/All Domains\" read \"/Groups/" + group + "\"";
-			if(attributes){
-				command += " " + attributes;
-			}
+		    if(verbose){
+                command = "dscl \"/Active Directory/" + domain + "/All Domains\" read \"/Groups/" + group + "\"";
+                if(attribute){
+                    command += " " + attribute;
+                }
+            }else{
+                command = "dscacheutil -q group -a name \"" + group + "\"";
+            }
 		}
 		else{
 			command = "dscl \"/Active Directory/" + domain + "/All Domains\" ls /Groups";
+			if(attribute){
+			    command += " " + attribute;
+			}
 		}
 		try{
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
-function Get_DomainGroupMember({API=false, group="Domain Admins", domain,help=false} = {}){
+function Get_LocalGroup({API=false, group, attribute,help=false, verbose=false} = {}){
+	//returns all groups or specific groups in an AD
 	if(help){
-		console.log("Get all the members of a specific domain group");
-		console.log("\"group\" should be a specific domain group to query.");
-		console.log("\"domain\" is the NETBIOS domain name to query, but if not specified, the function will figure it out.");
-		console.log("called: Get_DomainGroupMember({group:\"Domain Admins\"});");
-		return;
+	    var output = "";
+		output += "\\nList all local groups or get information on a specific group. If no group is specified, list all groups.";
+		output += "\\n\"group\" should be a local group name.";
+		output += "\\n\"verbose\" get more verbose output with dscl instead of dscacheutil"
+		output += "\\n\"attributes\" should be a comma separated list of attributes to select from the returned group. This only works in conjunction with a specific group, not when listing out all groups, and only when verbose is true.";
+		output += "\\ncalled: Get_LocalGroup() <--- list out all domain groups";
+		output += "\\ncalled: Get_LocalGroup({group:\"admin\",attributes:\"GroupMembership\"});";
+		output += "\\ncalled: Get_LocalGroup({attribute:\"GroupMembership\", verbose:true}); <--- get a mapping of all groups and their GroupMembership";
+		return output;
+	}
+	if(API == true){
+        return "API method not implemented yet";
+	}
+	else{
+		if(group){
+		    if(verbose){
+                command = "dscl . read \"/Groups/" + group + "\"";
+                if(attribute){
+                    command += " " + attribute;
+                }
+            }
+            else{
+                command = "dscacheutil -q group -a name " + group;
+            }
+		}
+		else{
+		    if(verbose){
+		        command = "dscl . ls /Groups";
+		        if(attribute){
+		            command += " " + attribute;
+		        }
+			}
+			else{
+			    command = "dscacheutil -q group";
+			}
+		}
+		try{
+			output = currApp.doShellScript(command);
+			return output;
+		}
+		catch(err){
+			return err.toString();
+		}
+	}
+}
+function Get_DomainGroupMember({API=false, group, domain,help=false} = {}){
+	if(help){
+	    var output = "";
+		output += "\\nGet all the members of a specific domain group";
+		output += "\\n\"group\" should be a specific domain group to query.";
+		output += "\\n\"domain\" is the NETBIOS domain name to query, but if not specified, the function will figure it out.";
+		output += "\\ncalled: Get_DomainGroupMember({group:\"Domain Admins\"});";
+		return output;
 	}
 	//return members of a specific domain group
 	if(!domain){
 		domain = Get_CurrentNETBIOSDomain(API);
 	}
 	if (API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		try{
-
-			command = "dscl \"/Active Directory/" + domain + "/All Domains\" read \"/Groups/" + group + "\" GroupMembership";
+            if(group){
+                command = "dscl \"/Active Directory/" + domain + "/All Domains\" read \"/Groups/" + group + "\" GroupMembership";
+            }
+			else{
+			    command = "dscl \"/Active Directory/" + domain + "/All Domains\" ls /Groups GroupMembership";
+			}
 			output = currApp.doShellScript(command);
 			return output;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
+}
+function Get_LocalGroupMember({API=false, group,help=false} = {}){
+	if(help){
+	    var output = "";
+		output += "\\nGet all the members of a specific local group";
+		output += "\\n\"group\" should be a specific local group to query.";
+		output += "\\ncalled: Get_LocalGroupMember({group:\"admin\"});";
+		return output;
+	}
+	if (API == true){
+        return "API method not implemented yet";
+	}
+	else{
+		try{
+            if(group){
+                command = "dscl . read \"/Groups/" + group + "\" GroupMembership";
+            }
+            else{
+                command = "dscl . ls /Groups GroupMembership"
+            }
+
+			output = currApp.doShellScript(command);
+			return output;
+		}
+		catch(err){
+			return err.toString();
+		}
+	}
+}
+function Search_LocalGroup({API=false, attribute="GroupMembership", value="", help=false} = {}){
+    if(help){
+        var output = "";
+        output += "\\nSearch a specific group attribute for a specific value";
+        output += "\\n\"attribute\" is a specific group attribute to search through, default is \"GroupMembership\"";
+        output += "\\n\"value\" is the value to search for";
+        output += "\\ncalled: Search_LocalGroups({attribute:\"GroupMembership\", value:\"username\"});";
+        return output;
+    }
+    if (API == true){
+        return "API method not implemented yet";
+    }
+    else{
+        try{
+            command = "dscl . -search /Groups " + attribute + " " + value;
+            output = currApp.doShellScript(command);
+            return output;
+        }catch(err){
+            return err.toString();
+        }
+    }
+}
+function Search_DomainGroup({API=false, attribute="GroupMembership", value="", help=false, domain} = {}){
+    if(help){
+        var output = "";
+        output += "\\nSearch a specific group attribute for a specific value";
+        output += "\\n\"attribute\" is a specific group attribute to search through, default is \"GroupMembership\"";
+        output += "\\n\"value\" is the value to search for";
+        output += "\\ncalled: Search_DomainGroups({attribute:\"GroupMembership\", value:\"username\"});";
+        return output;
+    }
+    if(!domain){
+		domain = Get_CurrentNETBIOSDomain(API);
+	}
+    if (API == true){
+        return "API method not implemented yet";
+    }
+    else{
+        command = "dscl \"/Active Directory/" + domain + "/All Domains\" -search /Groups " + attribute + " " + value;
+        try{
+            output = currApp.doShellScript(command);
+            return output;
+        }
+        catch(error){
+            return error.toString();
+        }
+    }
+
+}
+function Search_LocalUser({API=false, attribute="UserShell", value="/bin/bash", help=false} = {}){
+    if(help){
+        var output = "";
+        output += "\\nSearch local users attribute for a specific value";
+        output += "\\n\"attribute\" is a specific user attribute to search through, default is \"UserShell\"";
+        output += "\\n\"value\" is the value to search for, default is \"/bin/bash\"";
+        output += "\\ncalled: Search_LocalUsers({attribute:\"UserShell\", value:\"/bin/bash\"});";
+        return output;
+    }
+    if (API == true){
+        return "API method not implemented yet";
+    }
+    else{
+        try{
+            command = "dscl . -search /Users " + attribute + " " + value;
+            output = currApp.doShellScript(command);
+            return output;
+        }catch(err){
+            return err.toString();
+        }
+    }
+}
+function Search_DomainUser({API=false, attribute="", value="", help=false, domain} = {}){
+    if(help){
+        var output = "";
+        output += "\\nSearch a specific group attribute for a specific value";
+        output += "\\n\"attribute\" is a specific user attribute to search through, default is \"\"";
+        output += "\\n\"value\" is the value to search for";
+        output += "\\ncalled: Search_DomainUsers({attribute:\"\", value:\"username\"});";
+        return output;
+    }
+    if(!domain){
+		domain = Get_CurrentNETBIOSDomain(API);
+	}
+    if (API == true){
+        return "API method not implemented yet";
+    }
+    else{
+        command = "dscl \"/Active Directory/" + domain + "/All Domains\" -search /Users " + attribute + " " + value;
+        try{
+            output = currApp.doShellScript(command);
+            return output;
+        }
+        catch(error){
+            return error.toString();
+        }
+    }
 }
 ////////////////////////////////////////////////
 ///////// HELPER FUNCTIONS /////////////////////
 ////////////////////////////////////////////////
 function Get_CurrentDomain(API,help=false){
 	if(help){
-		console.log("Get the fully qualified current domain");
-		console.log("called: Get_CurrentDomain();");
-		return;
+	    var output = "";
+		output += "\\nGet the fully qualified current domain";
+		output += "\\ncalled: Get_CurrentDomain();";
+		return output;
 	}
 	if(API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		try{
@@ -468,19 +702,19 @@ function Get_CurrentDomain(API,help=false){
 			return domain;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
 function Get_CurrentNETBIOSDomain(API,help=false){
 	if(help){
-		console.log("Get the NETBIOS name of the current domain");
-		console.log("called: Get_CurrentNETBIOSDomain();");
-		return;
+	    var output = "";
+		output += "\\nGet the NETBIOS name of the current domain";
+		output += "\\ncalled: Get_CurrentNETBIOSDomain();";
+		return output;
 	}
 	if(API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		try{
@@ -499,19 +733,19 @@ function Get_CurrentNETBIOSDomain(API,help=false){
 			return domain;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
 function Get_Forest(API,help=false){
 	if(help){
-		console.log("Get the fully qualified forest name");
-		console.log("called: Get_Forest();");
-		return;
+	    var output = "";
+		output += "\\nGet the fully qualified forest name";
+		output += "\\ncalled: Get_Forest();";
+		return output;
 	}
 	if(API == true){
-
+        return "API method not implemented yet";
 	}
 	else{
 		try{
@@ -527,8 +761,7 @@ function Get_Forest(API,help=false){
 			return forest;
 		}
 		catch(err){
-			console.log(err.message);
-			return;
+			return err.toString();
 		}
 	}
 }
