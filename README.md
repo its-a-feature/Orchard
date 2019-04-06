@@ -1,5 +1,5 @@
 # Orchard
-JavaScript for Automation (JXA) tool to do Active Directory enumeration. Current version: 1.1
+JavaScript for Automation (JXA) tool to do Active Directory enumeration. Current version: 1.2
 
 # Purpose
 Live off the land for macOS. This program allows users to do Active Directory enumeration via macOS' JXA (JavaScript for Automation) code. This is the newest version of AppleScript, and thus has very poor documentation on the web. 
@@ -38,32 +38,34 @@ ConvertTo_SID({type:"Groups",object:"TEST\\Domain Admins"}); //same as above - t
 **Note2:** Every function has a Help flag that can be used to get information about how to run the function
 
 # Functions
-| Function | Version Introduced | Description|
-| ---------|:------------------|:-----------|
-| ConvertTo_SID |1.0 |Convert Users, Groups, Or Computers to domain or local SIDs |
-| ConvertFrom_SID |1.0 |Convert Users, Groups, or Computers from SIDs to names |
-| Get_PathAcl |1.0 |Get linux and mac specific ACLs on a file or folder |
-| Get_PathXattr |1.0 |Get mac specific extended attributes on a file or folder |
-| Get_MountedVolumes |1.0 |Get the mounted volumes on the current computer |
-| Set_MountVolume |1.0 |Mount a remote share on the current computer |
-| Get_DomainUser |1.0 |List all domain users or get information on a specific user |
-| Get_DomainComputer |1.0 |List all domain computers or get information on a specific computer |
-| Get_LDAPSearch |1.0 |Execute a customized LDAP search query |
-| Get_DomainOU |1.0 |List all domain organizational units or get information on a specific unit |
-| Get_DomainSID |1.0 |Gets the SID of the domain by truncating the SID for the "Domain Admins" group |
-| Get_DomainGroup |1.0 |List all domain groups or get information on a specific group |
-| Get_DomainGroupMember |1.0 |Get all the members of a specific domain group |
-| Get_CurrentDomain |1.0 |Get the fully qualified current domain |
-| Get_CurrentNETBIOSDomain |1.0 |Get the NETBIOS name of the current domain |
-| Get_Forest |1.0 |Get the fully qualified forest name |
-| Get_LocalUser | 1.1 | List all local user or get information on a specific user |
-| Get_LocalGroup | 1.1 | List all local groups or get information on a specific group |
-| Get_LocalGroupMember | 1.1 | Get all members for a specific local group |
-| Search_LocalGroup | 1.1 | Search all local groups for a specific attribute and value pair |
-| Search_LocalUser | 1.1 | Search all local users for a specific attribute and value pair |
-| Search_DomainGroup | 1.1 | Search all domain groups for a specific attribute and value pair |
-| Search_DomainUser | 1.1 | Search all domain users for a specific attribute and value pair |
+| Function | Version Introduced | Description| API Version is Default|
+| ---------|:------------------|:-----------|:--------|
+| ConvertTo_SID |1.2 |Convert Users, Groups, Or Computers to domain or local SIDs | True | 
+| ConvertFrom_SID |1.2 |Convert Users, Groups, or Computers from SIDs to names | True |
+| Get_PathAcl |1.0 |Get linux and mac specific ACLs on a file or folder | False |
+| Get_PathXattr |1.0 |Get mac specific extended attributes on a file or folder | False |
+| Get_MountedVolumes |1.0 |Get the mounted volumes on the current computer | False |
+| Set_MountVolume |1.0 |Mount a remote share on the current computer | False | 
+| Get_DomainUser |1.2 |List all domain users or get information on a specific user | True |
+| Get_DomainComputer |1.2 |List all domain computers or get information on a specific computer | True |
+| Get_LDAPSearch |1.0 |Execute a customized LDAP search query via the ldapsearch binary | False | 
+| Get_DomainOU |1.0 |List all domain organizational units or get information on a specific unit | False | 
+| Get_DomainSID |1.2 |Gets the SID of the domain by truncating the SID for the "Domain Admins" group | True |
+| Get_DomainGroup |1.2 |List all domain groups or get information on a specific group | True | 
+| Get_DomainGroupMember |1.2 |Get all the members of a specific domain group | True | 
+| Get_CurrentDomain |1.2 |Get the fully qualified current domain | True | 
+| Get_CurrentNETBIOSDomain |1.2 |Get the NETBIOS name of the current domain | True |
+| Get_Forest |1.0 |Get the fully qualified forest name via the dsconfigad binary | False |
+| Get_LocalUser | 1.2 | List all local user or get information on a specific user | True | 
+| Get_LocalGroup | 1.2 | List all local groups or get information on a specific group | True |
+| Get_LocalGroupMember | 1.2 | Get all members for a specific local group | True |
+| Search_LocalGroup | 1.1 | Search all local groups for a specific attribute and value pair | False |
+| Search_LocalUser | 1.1 | Search all local users for a specific attribute and value pair | False |
+| Search_DomainGroup | 1.1 | Search all domain groups for a specific attribute and value pair | False |
+| Search_DomainUser | 1.1 | Search all domain users for a specific attribute and value pair | False |
+| Get_OD_ObjectClass | 1.2 | Use the OpenDirectory APIs to query the domain, similar to LDAP | True |
 
+**Not:** The search functionality can be achieved via the Get_* functions when APIs are involved. It's only when dealing with the `dscl` binary that things have to be split into different functions.
 
 # Sample Outputs and Common Attributes
 These are some common attributes I've seen that might be useful to query:
@@ -533,3 +535,47 @@ _lpadmin		GroupMembership = (
 )
 
 ```
+Get_OD_ObjectClass({objectclass:"Groups", match:"Contains", value:"admin", max_results:0, query_attributes:"RecordName", return_attributes:["SMBSID", "distinguishedName"]});
+
+Apple's OpenDirectory standard is really weird and picky. When picking a main object class to query, you can select from any of the following on the left-hand side:
+```
+"AFPUserAliases": 			$.kODRecordTypeAFPUserAliases,
+"Aliases": 					$.kODRecordTypeAliases,
+"AutoMount": 				$.kODRecordTypeAutoMount,
+"AutomountMap": 			$.kODRecordTypeAutoMountMap,
+"CertificateAuthorities": 	$.kODRecordTypeCertificateAuthorities,
+"ComputerGroups": 			$.kODRecordTypeComputerGroups,
+"ComputerLists": 			$.kODRecordTypeComputerLists,
+"Computers": 				$.kODRecordTypeComputers,
+"Config": 					$.kODRecordTypeConfig,
+"Ethernets": 				$.kODRecordTypeEthernets,
+"FileMakerServers": 		$.kODRecordTypeFileMakerServers,
+"Groups": 					$.kODRecordTypeGroups,
+"Hosts": 					$.kODRecordTypeHosts,
+"Maps": 					$.kODRecordTypeMaps,
+"Mounts": 					$.kODRecordTypeMounts,
+"NetGroups": 				$.kODRecordTypeNetGroups,
+"Networks": 				$.kODRecordTypeNetworks,
+"OrganizationalUnit": 		$.kODRecordTypeOrganizationalUnit,
+"People": 					$.kODRecordTypePeople,
+"Places": 					$.kODRecordTypePlaces,
+"Printers": 				$.kODRecordTypePrinters,
+"Protocols": 				$.kODRecordTypeProtocols,
+"RPC": 						$.kODRecordTypeRPC,
+"Resources": 				$.kODRecordTypeResources,
+"Services": 				$.kODRecordTypeServices,
+"SharePoints": 				$.kODRecordTypeSharePoints,
+"Users": 					$.kODRecordTypeUsers,
+```
+There are more possibilities (listed below these in the actual code), but these are the only ones I saw that were supported. You can generally think of these as the `objectclass` in a standard ldap query (i.e. `(&(objectclass=user)(name=*admin*))`.
+When it comes to matching values, you can select any of the following match types:
+```
+"Any": 		$.kODMatchAny,
+"BeginsWith": 	$.kODMatchInsensitiveBeginsWith,
+"EndsWith": 	$.kODMatchInsensitiveEndsWith,
+"Contains": 	$.kODMatchInsensitiveContains,
+"EqualTo": 	$.kODMatchInsensitiveEqualTo,
+"LessThan": 	$.kODMatchLessThan,
+"GreaterThan": 	$.kODMatchGreaterThan
+```
+The most annoying part is the `query_attribute`. If you look in the code for this function, you'll see `var attributes_list = ` and a big list. When you want to use a match type other than `Any` with a specific field, the field **MUST** have a corresponding `$.kODAttributeType` field. If this doesn't exist, you can't match on it. For example, `accountExpires` is a valid property to return, but it cannot be used in your selection criteria because it doesn't have a `$.kODAttributeType` field. If anybody is able to help fill in the missing appropriate `kODAttributeType` values, that would be much appreciated!
