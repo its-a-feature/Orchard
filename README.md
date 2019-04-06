@@ -37,6 +37,8 @@ ConvertTo_SID({type:"Groups",object:"TEST\\Domain Admins"}); //same as above - t
 
 **Note2:** Every function has a Help flag that can be used to get information about how to run the function
 
+**Note3:** All of the APIs currently take advantage of the OpenDirectory APIs that are available through the JXA-ObjC bridge. These can be pretty powerful, but at the moment means that I can only query information within the current forest. These functions will by default query all domains within the forest. For exmaple: If I'm running on a computer, spooky$, in test.lab.local, then my queries will search the `test.lab.local` and `lab.local` domains automatically. I couldn't find a way to specify a specific server outside the forest to query though, so I cannot query a separate forest that you might have trust with.
+
 # Functions
 | Function | Version Introduced | Description| API Version is Default|
 | ---------|:------------------|:-----------|:--------|
