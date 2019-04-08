@@ -108,10 +108,12 @@ var attributes_list = {
 	"generateduid": 				["GeneratedUID",					$.kODAttributeTypeGUID, 				"dsAttrTypeStandard:"],
 	"grouptype": 					["groupType",						""	,									"dsAttrTypeNative:"],
 	"hardwareuuid": 				["HardwareUUID", 					$.kODAttributeTypeHardwareUUID,			"dsAttrTypeStandard:"],
+	"heimdalsrpkey": 				["HeimdalSRPKey", 					""	,					"dsAttrTypeNative:"],
 	"ishidden": 					["IsHidden",						""	,									"dsAttrTypeNative:"],
 	"instancetype": 				["instanceType",					""	,									"dsAttrTypeNative:"],
 	"iscriticalsystemobject": 		["isCriticalSystemObject",			""	,									"dsAttrTypeNative:"],
 	"jobtitle": 					["JobTitle", 						$.kODAttributeTypeJobTitle,				"dsAttrTypeStandard:"],
+	"kerberoskeys": 			["KerberosKeys": 				""	,							"dsAttrTypeNative:"],
 	"kerberosservices": 			["KerberosServices",				$.kODAttributeTypeKerberosServices, 	"dsAttrTypeStandard:"], //host, afpserver, cifs, vnc, etc
 	"lastname": 					["LastName",						$.kODAttributeTypeLastName,				"dsAttrTypeStandard:"],
 	"lastlogoff": 					["lastLogoff",						""	,									"dsAttrTypeNative:"],
@@ -172,6 +174,7 @@ var attributes_list = {
 	"samaccounttype": 				["sAMAccountType",					""	,									"dsAttrTypeNative:"],
 	"serverreferencebl": 			["serverReferenceBL",				""	,									"dsAttrTypeNative:"],
 	"serviceprincipalname": 		["servicePrincipalName",			""	,									"dsAttrTypeNative:"],
+	"shadowhashdata": 			["ShadowHashData", 				""	,									"dsAttrTypeNative:"],
 	"smbacctflags": 				["SMBAccountFlags",					$.kODAttributeTypeSMBAcctFlags, 		"dsAttrTypeStandard:"],//account control flag
 	"smbgrouprid": 					["SMBGroupRID",						$.kODAttributeTypeSMBGroupRID,			"dsAttrTypeStandard:"], //define PDC SMB interaction with DirectoryService
 	"smbhome": 						["SMBHome",							$.kODAttributeTypeSMBHome, 				"dsAttrTypeStandard:"],//UNC address of a windows home directory mount point
