@@ -113,7 +113,7 @@ var attributes_list = {
 	"instancetype": 				["instanceType",					""	,									"dsAttrTypeNative:"],
 	"iscriticalsystemobject": 		["isCriticalSystemObject",			""	,									"dsAttrTypeNative:"],
 	"jobtitle": 					["JobTitle", 						$.kODAttributeTypeJobTitle,				"dsAttrTypeStandard:"],
-	"kerberoskeys": 			["KerberosKeys": 				""	,							"dsAttrTypeNative:"],
+	"kerberoskeys": 			["KerberosKeys", 				""	,							"dsAttrTypeNative:"],
 	"kerberosservices": 			["KerberosServices",				$.kODAttributeTypeKerberosServices, 	"dsAttrTypeStandard:"], //host, afpserver, cifs, vnc, etc
 	"lastname": 					["LastName",						$.kODAttributeTypeLastName,				"dsAttrTypeStandard:"],
 	"lastlogoff": 					["lastLogoff",						""	,									"dsAttrTypeNative:"],
