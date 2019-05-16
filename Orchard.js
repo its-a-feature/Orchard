@@ -340,7 +340,18 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 		output[objectclass][i] = {};
 		for(var j = 0; j < keys.count; j++){
 			var key = ObjC.unwrap(keys.objectAtIndex(j));
-			var val = ObjC.deepUnwrap(attributes.valueForKey(keys.objectAtIndex(j)));
+			var array = attributes.valueForKey(keys.objectAtIndex(j));
+			var array_length = parseInt($.CFArrayGetCount(array));
+			var val = [];
+			for(var k = 0; k < array_length; k++){
+				if(!array.objectAtIndex(k).isKindOfClass($.NSString.class)){
+					//console.log(array.objectAtIndex(k).base64EncodedStringWithOptions(null).js);
+					val.push(array.objectAtIndex(k).base64EncodedStringWithOptions(null).js);
+				}else{
+					//console.log(array.objectAtIndex(k));
+					val.push(array.objectAtIndex(k).js);
+				}
+			}
 			output[objectclass][i][key] = val;
 		}
 	}
