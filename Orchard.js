@@ -7,274 +7,274 @@ currApp = Application.currentApplication();
 currApp.includeStandardAdditions = true;
 // Lookup tables for doing OpenDirectory queries via LDAP
 var object_class = {
-	"AFPUserAliases": 			$.kODRecordTypeAFPUserAliases,
-	"Aliases": 					$.kODRecordTypeAliases,
-	"AutoMount": 				$.kODRecordTypeAutoMount,
-	"AutomountMap": 			$.kODRecordTypeAutoMountMap,
-	"CertificateAuthorities": 	$.kODRecordTypeCertificateAuthorities,
-	"ComputerGroups": 			$.kODRecordTypeComputerGroups,
-	"ComputerLists": 			$.kODRecordTypeComputerLists,
-	"Computers": 				$.kODRecordTypeComputers,
-	"Config": 					$.kODRecordTypeConfig,
-	"Ethernets": 				$.kODRecordTypeEthernets,
-	"FileMakerServers": 		$.kODRecordTypeFileMakerServers,
-	"Groups": 					$.kODRecordTypeGroups,
-	"Hosts": 					$.kODRecordTypeHosts,
-	"Maps": 					$.kODRecordTypeMaps,
-	"Mounts": 					$.kODRecordTypeMounts,
-	"NetGroups": 				$.kODRecordTypeNetGroups,
-	"Networks": 				$.kODRecordTypeNetworks,
-	"OrganizationalUnit": 		$.kODRecordTypeOrganizationalUnit,
-	"People": 					$.kODRecordTypePeople,
-	"Places": 					$.kODRecordTypePlaces,
-	"Printers": 				$.kODRecordTypePrinters,
-	"Protocols": 				$.kODRecordTypeProtocols,
-	"RPC": 						$.kODRecordTypeRPC,
-	"Resources": 				$.kODRecordTypeResources,
-	"Services": 				$.kODRecordTypeServices,
-	"SharePoints": 				$.kODRecordTypeSharePoints,
-	"Users": 					$.kODRecordTypeUsers,
-
-	"Configuration": 			$.kODRecordTypeConfiguration,
-	"FTPServer": 				$.kODRecordTypeFTPServer,
-	"LocalServices": 			$.kODRecordTypeHostServices,
-	"LDAPServer": 				$.kODRecordTypeLDAPServer,
-	"NFS": 						$.kODRecordTypeNFS,
-	"Machines": 				$.kODRecordTypesMachines,
-	"PrintService": 			$.kODRecordTypePrintService,
-	"UserAuthenticationData": 	$.kODRecordTypeUserAuthenticationData,
-	"AFPServer": 				$.kODRecordTypeAFPServer,
-	"Augments": 				$.kODRecordTypeAugments,
-	"HostServices": 			$.kODRecordTypeHostServices,
-	"SMBServer": 				$.kODRecordTypeSMBServer,
-	"Servers": 					$.kODRecordTypeServer,
-	"WebServer": 				$.kODRecordTypeWebServer,
-	"AutoServerSetup": 			$.kODRecordTypeAutoServerSetup,
-	"Bootp": 					$.kODRecordTypeBootp,
-	"Locations": 				$.kODRecordTypeLocations,
-	"NetDomains":  				$.kODRecordTypeNetDomains,
-	"PrintServiceUser": 		$.kODRecordTypePrintServiceUser,
-	"All": 						$.kODRecordTypeRecordTypes,
-	"AccessControls":			$.kODRecordTypeAccessControls,	
+	"AttributeTypes": 			"dsRecTypeStandard:AttributeTypes",
+	"AFPServer": 				"dsRecTypeStandard:AFPServer",
+	"Aliases": 					"dsRecTypeStandard:Aliases",
+	"Augments": 				"dsRecTypeStandard:Augments",
+	"Automount": 				"dsRecTypeStandard:Automount",
+	"AutomountMap": 			"dsRecTypeStandard:AutomountMap",
+	"AutoServerSetup": 			"dsRecTypeStandard:AutoServerSetup",
+	"Bootp": 					"dsRecTypeStandard:Bootp",
+	"CertificateAuthorities": 	"dsRecTypeStandard:CertificateAuthorities",
+	"ComputerLists": 			"dsRecTypeStandard:ComputerLists",
+	"ComputerGroups": 			"dsRecTypeStandard:ComputerGroups",
+	"Computers": 				"dsRecTypeStandard:Computers",
+	"Configuration": 			"dsRecTypeStandard:Config",
+	"Ethernets": 				"dsRecTypeStandard:Ethernets",
+	"FileMakerServers": 		"dsRecTypeStandard:FileMakerServers",
+	"FTPServer": 				"dsRecTypeStandard:FTPServer",
+	"Groups": 					"dsRecTypeStandard:Groups",
+	"HostServices": 			"dsRecTypeStandard:HostServices",
+	"Hosts": 					"dsRecTypeStandard:Hosts",
+	"LDAPServer": 				"dsRecTypeStandard:LDAPServer",
+	"Locations": 				"dsRecTypeStandard:Locations",
+	"Mounts": 					"dsRecTypeStandard:Mounts",
+	"NFS": 						"dsRecTypeStandard:NFS",
+	"NetDomains": 				"dsRecTypeStandard:NetDomains",
+	"NetGroups": 				"dsRecTypeStandard:NetGroups",
+	"Networks": 				"dsRecTypeStandard:Networks",
+	"PasswordServer": 			"dsRecTypeStandard:PasswordServer",
+	"People": 					"dsRecTypeStandard:People",
+	"Plugins": 					"dsRecTypeStandard:Plugins",
+	"PresetComputers": 			"dsRecTypeStandard:PresetComputers",
+	"PresetComputerGroups": 	"dsRecTypeStandard:PresetComputerGroups",
+	"PresetComputerLists": 		"dsRecTypeStandard:PresetComputerLists",
+	"PresetGroups": 			"dsRecTypeStandard:PresetGroups",
+	"PresetUsers": 				"dsRecTypeStandard:PresetUsers",
+	"PrintService": 			"dsRecTypeStandard:PrintService",
+	"PrintServiceUser": 		"dsRecTypeStandard:PrintServiceUser",
+	"Printers": 				"dsRecTypeStandard:Printers",
+	"Protocols": 				"dsRecTypeStandard:Protocols",
+	"QTSServer": 				"dsRecTypeStandard:QTSServer",
+	"RecordTypes": 				"dsRecTypeStandard:RecordTypes",
+	"Resources": 				"dsRecTypeStandard:Resources",
+	"RPC": 						"dsRecTypeStandard:RPC",
+	"SMBServer": 				"dsRecTypeStandard:SMBServer",
+	"Server": 					"dsRecTypeStandard:Server",
+	"Services": 				"dsRecTypeStandard:Services",
+	"SharePoints": 				"dsRecTypeStandard:SharePoints",
+	"UserAuthenticationData": 	"dsRecTypeStandard:UserAuthenticationData",
+	"Users": 					"dsRecTypeStandard:Users",
+	"WebServer": 				"dsRecTypeStandard:WebServer",	
 }
 var match_type = {
-	"Any": 			$.kODMatchAny,
-	"BeginsWith": 	$.kODMatchInsensitiveBeginsWith,
-	"EndsWith": 	$.kODMatchInsensitiveEndsWith,
-	"Contains": 	$.kODMatchInsensitiveContains,
-	"EqualTo": 		$.kODMatchInsensitiveEqualTo,
-	"LessThan": 	$.kODMatchLessThan,
-	"GreaterThan": 	$.kODMatchGreaterThan
+	"Any": 			0x01,//$.kODMatchAny,
+	"BeginsWith": 	0x2002,//$.kODMatchInsensitiveBeginsWith,
+	"EndsWith": 	0x2003,//$.kODMatchInsensitiveEndsWith,
+	"Contains": 	0x2004,//$.kODMatchInsensitiveContains,
+	"EqualTo": 		0x2001,//$.kODMatchInsensitiveEqualTo,
+	"LessThan": 	0x2007,//$.kODMatchLessThan,
+	"GreaterThan": 	0x2006,//$.kODMatchGreaterThan
 }
 var attributes_list = {
-	"all": 							["All",								$.kODAttributeTypeAllAttributes,		"dsAttributesAll"],
-	"*": 							["*",								$.kODAttributeTypeAllAttributes,		"dsAttributesAll"],
-	"accountpolicydata": 			["accountPolicyData",				""	,									"dsAttrTypeNative:"],
-	"accountexpires": 				["accountExpires",				 	""	,									"dsAttrTypeNative:"],
-	"admincount": 					["adminCount",						""	,									"dsAttrTypeNative:"],
-	"adminlimits": 					["AdminLimits", 					$.kODAttributeTypeAdminLimits,			"dsAttrTypeStandard:"],
-	"altsecurityidentities": 		["AltSecurityIdentities",			$.kODAttributeTypeAltSecurityIdentities,"dsAttrTypeStandard:"], //x509
-	"afp_guestaccess": 				["afp_guestaccess",					""	,									"dsAttrTypeNative:"],
-	"afp_name": 					["afp_name",					 	""	,									"dsAttrTypeNative:"],
-	"afp_shared":  					["afp_shared",						""	,									"dsAttrTypeNative:"],
-	"authenticationhint": 			["AuthenticationHint", 				$.kODAttributeTypeAuthenticationHint,	"dsAttrtypeStandard:"],
-	"badpasswordtime": 				["badPasswordTime",					""	,									"dsAttrTypeNative:"],
-	"badpwdcount": 					["badPwdCount",						""	,									"dsAttrTypeNative:"],
-	"bootfile": 					["BootFile", 						""	,									"dsAttrTypeStandard:"],
-	"bootparams": 					["BootParams", 						$.kODAttributeTypeBootParams,			"dsAttrTypeStandard:"],
-	"cacertificiate": 				["CACertificate", 					$.kODAttributeTypeCACertificate,		"dsAttrTypeStandard:"],
-	"capacity": 					["Capacity", 						$.kODAttributeTypeCapacity,				"dsAttrTypeStandard:"],
-	"category": 					["Category", 						""	,									"dsAttrtypeStandard:"],
-	"certificaterevocationlist": 	["CertificateRevocationList", 		$.kODAttributeTypeCertificateRevocationList,"dsAttrTypeStandard:"],
-	"codepage": 					["codePage",						""	,									"dsAttrTypeNative:"],
-	"comment": 						["Comment",							$.kODAttributeTypeComment, 				"dsAttrTypeStandard:"],
-	"contactguid": 					["ContactGUID",						$.kODAttributeTypeContactGUID,			"dsAttrtypeStandard:"],
-	"countrycode": 					["countryCode",						""	,									"dsAttrTypeNative:"],
-	"creationtimestamp": 			["CreationTimestamp",				$.kODAttributeTypeCreationTimestamp,	"dsAttrTypeStandard:"],
-	"crosscertificatepair": 		["CrossCertificatePair", 			$.kODAttributeTypeCrossCertificatePair, "dsAttrTypeStandard:"],
-	"cn": 							["cn",								""	,									"dsAttrTypeNative:"],
-	"fullname": 					["FullName",						$.kODAttributeTypeFullName,				""], //have to use realname
-	"displayname": 					["displayName",						""	,									"dsAttrTypeNative:"],
-	"distinguishedname": 			["distinguishedName",				""	,									"dsAttrTypeNative:"],
-	"directory_path": 				["directory_path",					""	,									"dsAttrTypeNative:"],
-	"dnsdomain": 					["DNSDomain",						$.kODAttributeTypeDNSDomain,			"dsAttrTypeStandard:"],
-	"dnsnameserver": 				["DNSNameServer",					$.kODAttributeTypeDNSNameServer,		"dsAttrTypeStandard:"],
-	"dscorepropagationdata": 		["dsCorePropagationData",			""	,									"dsAttrTypeNative:"],
-	"emailaddress": 				["EMailAddress", 					$.kODAttributeTypeEMailAddress,			"dsAttrTypeStandard:"],
-	"enetaddress": 					["ENetAddress", 					$.kODAttributeTypeENetAddress,			"dsAttrTypeNative:"],
-	"expire": 						["Expire", 							$.kODAttributeTypeExpire,				"dsAttrTypeStandard:"],
-	"firstname": 					["FirstName",						$.kODAttributeTypeFirstName,			"dsAttrTypeStandard:"],
-	"ftp_name": 					["ftp_name",						""	,									"dsAttrTypeNative:"],
-	"generateduid": 				["GeneratedUID",					$.kODAttributeTypeGUID, 				"dsAttrTypeStandard:"],
-	"grouptype": 					["groupType",						""	,									"dsAttrTypeNative:"],
-	"hardwareuuid": 				["HardwareUUID", 					$.kODAttributeTypeHardwareUUID,			"dsAttrTypeStandard:"],
-	"heimdalsrpkey": 				["HeimdalSRPKey", 					""	,					"dsAttrTypeNative:"],
-	"ishidden": 					["IsHidden",						""	,									"dsAttrTypeNative:"],
-	"instancetype": 				["instanceType",					""	,									"dsAttrTypeNative:"],
-	"iscriticalsystemobject": 		["isCriticalSystemObject",			""	,									"dsAttrTypeNative:"],
-	"jobtitle": 					["JobTitle", 						$.kODAttributeTypeJobTitle,				"dsAttrTypeStandard:"],
-	"kerberoskeys": 			["KerberosKeys", 				""	,							"dsAttrTypeNative:"],
-	"kerberosservices": 			["KerberosServices",				$.kODAttributeTypeKerberosServices, 	"dsAttrTypeStandard:"], //host, afpserver, cifs, vnc, etc
-	"lastname": 					["LastName",						$.kODAttributeTypeLastName,				"dsAttrTypeStandard:"],
-	"lastlogoff": 					["lastLogoff",						""	,									"dsAttrTypeNative:"],
-	"lastlogon": 					["lastLogon",					 	""	,									"dsAttrTypeNative:"],
-	"lastlogontimestamp": 			["lastLogonTimestamp",				""	,									"dsAttrTypeNative:"],
-	"localpolicyglags": 			["localPolicyFlags",				""	,									"dsAttrTypeNative:"],
-	"logoncount": 					["logonCount",						""	,									"dsAttrTypeNative:"],
-	"logonhours": 					["logonHours",					 	""	,									"dsAttrTypeNative:"],
-	"ldapsearchbasesuffix": 		["LDAPSearchBaseSuffix",			$.kODAttributeTypeLDAPSearchBaseSuffix,	"dsAttrtypeStandard:"],
-	"automountmap": 				["AutomountMap",					$.kODAttributeTypeMetaAutomountMap,		"dsAttrTypeStandard:"],
-	"applemetanodelocation":  		["AppleMetaNodeLocation",			$.kODAttributeTypeMetaNodeLocation,		"dsAttrTypeStandard:"],
-	"applemetarecordname": 			["AppleMetaRecordName",				""	,									"dsAttrTypeStandard:"],
-	"machineserves": 				["MachineServes", 					""	,									"dsAttrTypeStandard:"],
-	"mcxflags": 					["MCXFlags",						$.kODAttributeTypeMCXFlags,				"dsAttrTypeStandard:"],
-	"mcxsettings": 					["MCXSettings",						$.kODAttributeTypeMCXSettings,			"dsAttrTypeStandard:"],
-	"middlename": 					["MiddleName",						$.kODAttributeTypeMiddleName,			"dsAttrTypeStandard:"],
-	"member": 						["member",							""	,									"dsAttrTypeNative:"],
-	"memberof": 					["memberOf",						""	,									"dsAttrTypeNative:"],
-	"members": 						["members",							""	,									"dsAttrTypeNative:"],
-	"msdfsr-computerreferencebl": 	["msDFSR-ComputerReferenceBL",	 	""	,									"dsAttrTypeNative:"],
-	"msds-generationid": 			["msDS-GenerationId",				""	,									"dsAttrTypeNative:"],
-	"msds-supportedencryptiontypes":["msDS-SupportedEncryptionTypes",	""	,									"dsAttrTypeNative:"],
-	"modificationtimestamp": 		["ModificationTimestamp",			$.kODAttributeTypeModificationTimestamp,"dsAttrTypeStandard:"],
-	"name": 						["name",						 	""	,									"dsAttrTypeNative:"],
-	"networkaddress": 				["networkAddress",				 	""	,									"dsAttrTypeNative:"],
-	"networkview": 					["NetworkView", 					""	,									"dsAttrTypeStandard:"],
-	"nfshomedirectory": 			["NFSHomeDirectory",				$.kODAttributeTypeNFSHomeDirectory, 	"dsAttrTypeStandard:"],
-	"nodesaslrealm": 				["NodeSASLRealm", 					$.kODAttributeTypeNodeSASLRealm,		"dsAttrTypeStandard:"],
-	"note": 						["Note",							$.kODAttributeTypeNote, 				"dsAttrTypeStandard:"],//says this is for last name attribute???
-	"objectclass": 					["objectClass",						""	,									"dsAttrTypeNative:"],
-	"objectcategory": 				["objectCategory",					""	,									"dsAttrTypeNative:"],
-	"objectguid": 					["objectGUID",						""	,									"dsAttrTypeNative:"],
-	"objectsid": 					["objectSid",						""	,									"dsAttrTypeNative:"], 
-	"olcdatabase": 					["OLCDatabase", 					""	,									"dsAttrTypeStandard:"],
-	"olcdatabaseindex": 			["OLCDatabaseIndex", 				""	,									"dsAttrTypeStandard:"],
-	"olcsyncrepl": 					["OLCSyncRepl", 					""	,									"dsAttrTypeStandard:"],
-	"operatingsystem": 				["operatingSystem",					$.kODAttributeTypeOperatingSystem,		"dsAttrTypeNative:"],
-	"operatingsystemversion": 		["operatingSystemVersion",			$.kODAttributeTypeOperatingSystemVersion,"dsAttrTypeNative:"],
-	"owner": 						["Owner",							$.kODAttributeTypeOwner,				"dsAttrTypeStandard:"],
-	"ownerguid": 					["OwnerGUID",						$.kODAttributeTypeOwnerGUID,			"dsAttrTypeStandard:"],
-	"password": 					["Password",						$.kODAttributeTypePassword, 			"dsAttrTypeStandard:"],
-	"passwordplus": 				["PasswordPlus",					$.kODAttributeTypePasswordPlus, 		"dsAttrTypeStandard:"],//indicates authentication redirection
-	"passwordpolicyoptions": 		["PasswordPolicyOptions",			$.kODAttributeTypePasswordPolicyOptions,"dsAttrTypeStandard:"],
-	"passwordserverlist": 			["PasswordServerList",				$.kODAttributeTypePasswordServerList,	"dsAttrTypeStandard:"],
-	"passwordserverlocation": 		["PasswordServerLocation",			$.kODAttributeTypePasswordServerLocation,"dsAttrTypeStandard:"],
-	"port": 						["Port",							$.kODAttributeTypePort, 				"dsAttrTypeStandard:"],//which port a service is on
-	"presetuserisadmin": 			["PresetUserIsAdmin", 				$.kODAttributeTypePresetUserIsAdmin,	"dsAttrTypeStandard:"],
-	"primarycomputerguid": 			["PrimaryComputerGUID",				$.kODAttributeTypePrimaryComputerGUID, 	"dsAttrTypeStandard:"],
-	"primarycomputerlist": 			["PrimaryComputerList", 			$.kODAttributeTypePrimaryComputerList,	"dsAttrTypeStandard:"],
-	"primarygroupid": 				["PrimaryGroupID",					$.kODAttributeTypePrimaryGroupID, 		"dsAttrTypeStandard:"],
-	"profiles": 					["Profiles", 						$.kODAttributeTypeProfiles,				"dsAttrTypeStandard:"],
-	"profilestimestamp": 			["ProfilesTimestamp", 				$.kODAttributeTypeProfilesTimestamp,	"dsAttrTypeStandard:"],
-	"realname": 					["RealName",						$.kODAttributeTypeFullName,				"dsAttrTypeStandard:"], //Yes, fullname maps to realname because... apple
-	"realuserid": 					["RealUserID",						$.kODAttributeTypeRealUserID,			"dsAttrTypeStandard:"],
-	"relativednprefix": 			["RelativeDNPrefix",				$.kODAttributeTypeRelativeDNPrefix, 	"dsAttrTypeStandard:"],//relative distinguished name,
-	"ridsetreferences": 			["rIDSetReferences",				""	,									"dsAttrTypeNative:"],
-	"samaccountname": 				["sAMAccountName",					""	,									"dsAttrTypeNative:"],
-	"samaccounttype": 				["sAMAccountType",					""	,									"dsAttrTypeNative:"],
-	"serverreferencebl": 			["serverReferenceBL",				""	,									"dsAttrTypeNative:"],
-	"serviceprincipalname": 		["servicePrincipalName",			""	,									"dsAttrTypeNative:"],
-	"shadowhashdata": 			["ShadowHashData", 				""	,									"dsAttrTypeNative:"],
-	"smbacctflags": 				["SMBAccountFlags",					$.kODAttributeTypeSMBAcctFlags, 		"dsAttrTypeStandard:"],//account control flag
-	"smbgrouprid": 					["SMBGroupRID",						$.kODAttributeTypeSMBGroupRID,			"dsAttrTypeStandard:"], //define PDC SMB interaction with DirectoryService
-	"smbhome": 						["SMBHome",							$.kODAttributeTypeSMBHome, 				"dsAttrTypeStandard:"],//UNC address of a windows home directory mount point
-	"smbhomedrive": 				["SMBHomeDrive",					$.kODAttributeTypeSMBHomeDrive,			"dsAttrTypeStandard:"],
-	"smbprimarygroupsid": 			["SMBPrimaryGroupSID",				$.kODAttributeTypeSMBPrimaryGroupSID,	"dsAttrTypeStandard:"],
-	"smbpasswordlastset": 			["SMBPasswordLastSet",				$.kODAttributeTypeSMBPWDLastSet, 		"dsAttrTypeStandard:"],// used in SMB interaction
-	"smbprofilepath": 				["SMBProfilePath",					$.kODAttributeTypeSMBProfilePath, 		"dsAttrTypeStandard:"],//defines desktop management info
-	"smbrid": 						["SMBRID",							$.kODAttributeTypeSMBRID, 				"dsAttrTypeStandard:"], //used in SMB interaction
-	"smbscriptpath": 				["SMBScriptPath",					$.kODAttributeTypeSMBScriptPath, 		"dsAttrTypeStandard:"],//define SMB login script path
-	"smbsid": 						["SMBSID",							$.kODAttributeTypeSMBSID, 				"dsAttrTypeStandard:"], //define SMB Security ID
-	"smbuserworkstations": 			["SMBUserWorkstations",				$.kODAttributeTypeSMBUserWorkstations, 	"dsAttrTypeStandard:"],//list of workstations a user can log in from
-	"smblogofftime": 				["SMBLogoffTime",					$.kODAttributeTypeSMBLogoffTime,		"dsAttrTypeStandard:"],
-	"smblogontime": 				["SMBLogonTime",					$.kODAttributeTypeSMBLogonTime,			"dsAttrTypeStandard:"],
-	"smb_createmask": 				["smb_createmask",					""	,									"dsAttrTypeNative:"],
-	"smb_directorymask": 			["smb_directorymask",				""	,									"dsAttrTypeNative:"],
-	"smb_guestaccess": 				["smb_guestaccess",					""	,									"dsAttrTypeNative:"],
-	"smb_name": 					["smb_name",						""	,									"dsAttrTypeNative:"],
-	"smb_shared":  					["smb_shared",						""	,									"dsAttrTypeNative:"],
-	"servicetype": 					["ServiceType",						$.kODAttributeTypeServiceType, 			"dsAttrTypeStandard:"],//define SMB login script path
-	"serviceslocator": 				["ServicesLocator", 				$.kODAttributeTypeServicesLocator,		"dsAttrTypeStandard:"],
-	"setupadvertising": 			["SetupAssistantAdvertising",		$.kODAttributeTypeSetupAdvertising, 	"dsAttrTypeStandard:"],//raw service type of a service, ex: http or https for kODRecordTypeWebServer
-	"sharepoint_account_uuid": 		["sharepoint_account_uuid",			""	,									"dsAttrTypeNative:"],
-	"sharepoint_group_id": 			["sharepoint_group_id",				""	,									"dsAttrTypeNative:"],
-	"showinadvancedviewonly": 		["showInAdvancedViewOnly",			""	,									"dsAttrTypeNative:"],
-	"uniqueid": 					["UniqueID",						$.kODAttributeTypeUniqueID, 			"dsAttrTypeStandard:"], //user's 32bit ID in legacy manner
-	"unlockoptions": 				["unlockOptions",					""	,									"dsAttrTypeNative:"],
-	"url": 							["URL", 							$.kODAttributeTypeURL,					"dsAttrTypeStandard:"],
-	"users": 						["users",						 	""	,									"dsAttrTypeNative:"],
-	"usnchanged": 					["uSNChanged",						""	,									"dsAttrTypeNative:"],
-	"usncreated": 					["uSNCreated",						""	,									"dsAttrTypeNative:"], 
-	"useraccountcontrol": 			["userAccountControl",				""	,									"dsAttrTypeNative:"],
-	"usercertificate": 				["UserCertificate",					$.kODAttributeTypeUserCertificate,		"dsAttrTypeStandard:"],
-	"userpkcs12data": 				["UserPKCS12Data",					$.kODAttributeTypeUserPKCS12Data,		"dsAttrTypeStandard:"],
-	"usershell": 					["UserShell",						$.kODAttributeTypeUserShell, 			"dsAttrTypeStandard:"],
-	"usersmimecertificate": 		["UserSMIMECertificate",			$.kODAttributeTypeUserSMIMECertificate,	"dsAttrTypeStandard:"],
-	"webloguri": 					["WeblogURI",						$.kODAttributeTypeWeblogURI, 			"dsAttrTypeStandard:"],//URI of a user's weblog
-	"whenchanged": 					["whenChanged",						""	,									"dsAttrTypeNative:"],
-	"whencreated": 					["whenCreated",						""	,									"dsAttrTypeNative:"],
-	"_writers_usercertificate": 	["_writers_UserCertificate",		""	,									"dsAttrTypeNative:"],
-	"_writers_hint": 				["_writers_hint",					""	,									"dsAttrTypeNative:"],
-	"_writers_passwd": 				["_writers_passwd",				 	""	,									"dsAttrTypeNative:"],
-	"_writers_unlockoptions": 		["_writers_unlockOptions",			""	,									"dsAttrTypeNative:"],
-	"_writers_usercertificate": 	["_writers_UserCertificate",		""	,									"dsAttrTypeNative:"],
-	"xmlplist": 					["XMLPlist",						$.kODAttributeTypeXMLPlist, 			"dsAttrTypeStandard:"],//specify an XML Property List
-	"protocolnumber": 				["ProtocolNumber",					$.kODAttributeTypeProtocolNumber,		"dsAttrTypeStandard:"],
-	"rpcnumber": 					["RPCNumber",						$.kODAttributeTypeRPCNumber,			"dsAttrTypeStandard:"],
-	"networknumber": 				["NetworkNumber",					$.kODAttributeTypeNetworkNumber,		"dsAttrTypeStandard:"],
-	"accesscontrolentry": 			["AccessControlEntry",				$.kODAttributeTypeAccessControlEntry,	"dsAttrTypeStandard:"],
-	"authenticationauthority": 		["AuthenticationAuthority",			$.kODAttributeTypeAuthenticationAuthority, "dsAttrTypeStandard:"], //specify mechanism used to verify or set a user's password
-	"authorityrevocationlist": 		["AuthorityRevocationList", 		$.kODAttributeTypeAuthorityRevocationList,	"dsAttrTypeStandard:"],
-	"automountinformation": 		["AutomountInformation",			$.kODAttributeTypeAutomountInformation,	"dsAttrTypeStandard:"],
-	"computers": 					["Computers",						$.kODAttributeTypeComputers,			"dsAttrTypeStandard:"],
-	"dnsname": 						["DNSName",							$.kODAttributeTypeDNSName,				"dsAttrTypeStandard:"],
-	"group": 						["Group",							$.kODAttributeTypeGroup, 				"dsAttrTypeStandard:"],//store a list of groups
-	"groupmembers": 				["GroupMembers",					$.kODAttributeTypeGroupMembers, 		"dsAttrTypeStandard:"], //specify GUID values of members of a group that are not groups
-	"groupmembership": 				["GroupMembership",					$.kODAttributeTypeGroupMembership, 		"dsAttrTypeStandard:"], //specify list of users that belong to a given group
-	"groupservices": 				["GroupServices",					$.kODAttributeTypeGroupServices, 		"dsAttrTypeStandard:"],//XML plist to define group's services,
-	"homedirectory": 				["HomeDirectory",					$.kODAttributeTypeHomeDirectory,		"dsAttrTypeStandard:"],
-	"imhandle": 					["IMHandle",						$.kODAttributeTypeIMHandle, 			"dsAttrTypeStandard:"],//user's instant messaging handles
-	"ipaddress": 					["IPAddress",						$.kODAttributeTypeIPAddress, 			"dsAttrTypeStandard:"],
-	"ipv6address": 					["IPv6Address",						$.kODAttributeTypeIPv6Address, 			"dsAttrTypeStandard:"],
-	"kdcauthkey": 					["KDCAuthKey",						$.kODAttributeTypeKDCAuthKey, 			"dsAttrTypeStandard:"],//store a KDC master key
-	"kdcconfigdata": 				["KDCConfigData", 					$.kODAttributeTypeKDCConfigData,		"dsAttrTypeStandard:"],
-	"keywords": 					["Keywords", 						$.kODAttributeTypeKeywords,				"dsAttrTypeStandard:"],
-	"ldapreadreplicas": 			["LDAPReadReplicas",				$.kODAttributeTypeLDAPReadReplicas, 	"dsAttrTypeStandard:"],//list of LDAP server URLs that can be used to read directory data
-	"ldapwritereplicas": 			["LDAPWriteReplicas",				$.kODAttributeTypeLDAPWriteReplicas,	"dsAttrTypeStandard:"],
-	"linkedidentity": 				["LinkedIdentity",					"" ,  									"dsAttrTypeNative:"],
-	"localerelay": 					["LocaleRelay", 					$.kODAttributeTypeLocaleRelay,			"dsAttrTypeStandard:"],
-	"localesubnets": 				["LocaleSubnets", 					$.kODAttributeTypeLocaleSubnets,		"dsAttrTypeStandard:"],
-	"nestedgroups": 				["NestedGroups",					$.kODAttributeTypeNestedGroups,			"dsAttrTypeStandard:"], //specify list of nested group GUID values in a group attribute
-	"netgroups": 					["NetGroups",						$.kODAttributeTypeNetGroups, 			"dsAttrTypeStandard:"],//specify a list of net groups that a user or host record is a member of
-	"nickname": 					["NickName",						$.kODAttributeTypeNickName,				"dsAttrTypeStandard:"],
-	"organizationinfo": 			["OrganizationInfo",				$.kODAttributeTypeOrganizationInfo,		"dsAttrTypeStandard:"],
-	"organizationname": 			["OrganizationName",				$.kODAttributeTypeOrganizationName,		"dsAttrTypeStandard:"],
-	"pgppublickey": 				["PGPPublicKey",					$.kODAttributeTypePGPPublicKey,			"dsAttrTypeStandard:"],
-	"protocols": 					["Protocols",						$.kODAttributeTypeProtocols, 			"dsAttrTypeStandard:"],
-	"recordname": 					["RecordName",						$.kODAttributeTypeRecordName, 			"dsAttrTypeStandard:"],
-	"record_daemon_version": 		["record_daemon_version",			""	,									"dsAttrTypeNative:"],
-	"relationships": 				["Relationships",					$.kODAttributeTypeRelationships,		"dsAttrTypeStandard:"],
-	"resourceinfo": 				["ResourceInfo",					$.kODAttributeTypeResourceInfo,			"dsAttrTypeStandard:"],
-	"resourcetype": 				["ResourceType",					$.kODAttributeTypeResourceType,			"dsAttrTypeStandard:"],
-	"authcredential": 				["AuthCredential",					$.kODAttributeTypeAuthCredential, 		"dsAttrTypeStandard:"],//stores an authentication credential used to authenticate to a directory
-	"daterecordcreated": 			["DateRecordCreated",				$.kODAttributeTypeDateRecordCreated,	"dsAttrTypeStandard:"],
-	"kerberosflags": 				["KerberosFlags",					""	,									"dsAttrTypeNative:"],
-	"kerberosrealm": 				["KerberosRealm",					$.kODAttributeTypeKerberosRealm,		"dsAttrTypeStandard:"],
-	"ntdomaincomputeraccount": 		["NTDomainComputerAccount",			$.kODAttributeTypeNTDomainComputerAccount, "dsAttrTypeStandard:"],//support kerberos SMB server services
-	"primaryntdomain": 				["PrimaryNTDomain",					$.kODAttributeTypePrimaryNTDomain,		"dsAttrTypeStandard:"],
-	"pwdagingpolicy": 				["PwdAgingPolicy",					$.kODAttributeTypePwdAgingPolicy, 		"dsAttrTypeStandard:"],//record's password aging policy
-	"readonlynode": 				["ReadOnlyNode",					$.kODAttributeTypeReadOnlyNode,			"dsAttrTypeStandard:"],
-	"authmethod": 					["AuthMethod",						$.kODAttributeTypeAuthMethod, 			"dsAttrTypeStandard:"],//specify a record's authentication method
-	"recordtype": 					["RecordType",						$.kODAttributeTypeRecordType, 			"dsAttrTypeStandard:"], //specify type of a record or directory node
-	"advertisedservices": 			["AdvertisedServices",				$.kODAttributeTypeAdvertisedServices, 	"dsAttrTypeStandard:"],//specify (Bounjour) advertised services
-	"networkinterfaces": 			["NetworkInterfaces",				$.kODAttributeTypeNetworkInterfaces,	"dsAttrTypeStandard:"],
-	"primarylocale": 				["PrimaryLocale",					$.kODAttributeTypePrimaryLocale,		"dsAttrTypeStandard:"]
+	"all": 							["",								"dsAttributesAll"],
+	"*": 							["",								"dsAttributesAll"],
+	"accountpolicydata": 			["accountPolicyData",				"dsAttrTypeNative:"],
+	"accountexpires": 				["accountExpires",				 	"dsAttrTypeNative:"],
+	"admincount": 					["adminCount",						"dsAttrTypeNative:"],
+	"adminlimits": 					["AdminLimits", 					"dsAttrTypeStandard:"],
+	"altsecurityidentities": 		["AltSecurityIdentities",			"dsAttrTypeStandard:"], //x509
+	"afp_guestaccess": 				["afp_guestaccess",					"dsAttrTypeNative:"],
+	"afp_name": 					["afp_name",					 	"dsAttrTypeNative:"],
+	"afp_shared":  					["afp_shared",						"dsAttrTypeNative:"],
+	"authenticationhint": 			["AuthenticationHint", 				"dsAttrtypeStandard:"],
+	"badpasswordtime": 				["badPasswordTime",					"dsAttrTypeNative:"],
+	"badpwdcount": 					["badPwdCount",						"dsAttrTypeNative:"],
+	"bootfile": 					["BootFile", 						"dsAttrTypeStandard:"],
+	"bootparams": 					["BootParams", 						"dsAttrTypeStandard:"],
+	"cacertificiate": 				["CACertificate", 					"dsAttrTypeStandard:"],
+	"capacity": 					["Capacity", 						"dsAttrTypeStandard:"],
+	"category": 					["Category", 						"dsAttrtypeStandard:"],
+	"certificaterevocationlist": 	["CertificateRevocationList", 		"dsAttrTypeStandard:"],
+	"codepage": 					["codePage",						"dsAttrTypeNative:"],
+	"comment": 						["Comment",							"dsAttrTypeStandard:"],
+	"contactguid": 					["ContactGUID",						"dsAttrtypeStandard:"],
+	"countrycode": 					["countryCode",						"dsAttrTypeNative:"],
+	"creationtimestamp": 			["CreationTimestamp",				"dsAttrTypeStandard:"],
+	"crosscertificatepair": 		["CrossCertificatePair", 			"dsAttrTypeStandard:"],
+	"cn": 							["cn",								"dsAttrTypeNative:"],
+	"fullname": 					["FullName",						""], //have to use realname
+	"displayname": 					["displayName",						"dsAttrTypeNative:"],
+	"distinguishedname": 			["distinguishedName",				"dsAttrTypeNative:"],
+	"directory_path": 				["directory_path",					"dsAttrTypeNative:"],
+	"dnsdomain": 					["DNSDomain",						"dsAttrTypeStandard:"],
+	"dnsnameserver": 				["DNSNameServer",					"dsAttrTypeStandard:"],
+	"dscorepropagationdata": 		["dsCorePropagationData",			"dsAttrTypeNative:"],
+	"emailaddress": 				["EMailAddress", 					"dsAttrTypeStandard:"],
+	"enetaddress": 					["ENetAddress", 					"dsAttrTypeNative:"],
+	"expire": 						["Expire", 							"dsAttrTypeStandard:"],
+	"firstname": 					["FirstName",						"dsAttrTypeStandard:"],
+	"ftp_name": 					["ftp_name",						"dsAttrTypeNative:"],
+	"generateduid": 				["GeneratedUID",					"dsAttrTypeStandard:"],
+	"grouptype": 					["groupType",						"dsAttrTypeNative:"],
+	"hardwareuuid": 				["HardwareUUID", 					"dsAttrTypeStandard:"],
+	"heimdalsrpkey": 				["HeimdalSRPKey", 					"dsAttrTypeNative:"],
+	"ishidden": 					["IsHidden",						"dsAttrTypeNative:"],
+	"instancetype": 				["instanceType",					"dsAttrTypeNative:"],
+	"iscriticalsystemobject": 		["isCriticalSystemObject",			"dsAttrTypeNative:"],
+	"jobtitle": 					["JobTitle", 						"dsAttrTypeStandard:"],
+	"kerberoskeys": 				["KerberosKeys", 					"dsAttrTypeNative:"],
+	"kerberosservices": 			["KerberosServices",				"dsAttrTypeStandard:"], //host, afpserver, cifs, vnc, etc
+	"lastname": 					["LastName",						"dsAttrTypeStandard:"],
+	"lastlogoff": 					["lastLogoff",						"dsAttrTypeNative:"],
+	"lastlogon": 					["lastLogon",					 	"dsAttrTypeNative:"],
+	"lastlogontimestamp": 			["lastLogonTimestamp",				"dsAttrTypeNative:"],
+	"localpolicyglags": 			["localPolicyFlags",				"dsAttrTypeNative:"],
+	"logoncount": 					["logonCount",						"dsAttrTypeNative:"],
+	"logonhours": 					["logonHours",					 	"dsAttrTypeNative:"],
+	"ldapsearchbasesuffix": 		["LDAPSearchBaseSuffix",			"dsAttrtypeStandard:"],
+	"automountmap": 				["AutomountMap",					"dsAttrTypeStandard:"],
+	"applemetanodelocation":  		["AppleMetaNodeLocation",			"dsAttrTypeStandard:"],
+	"applemetarecordname": 			["AppleMetaRecordName",				"dsAttrTypeStandard:"],
+	"machineserves": 				["MachineServes", 					"dsAttrTypeStandard:"],
+	"mcxflags": 					["MCXFlags",						"dsAttrTypeStandard:"],
+	"mcxsettings": 					["MCXSettings",						"dsAttrTypeStandard:"],
+	"middlename": 					["MiddleName",						"dsAttrTypeStandard:"],
+	"member": 						["member",							"dsAttrTypeNative:"],
+	"memberof": 					["memberOf",						"dsAttrTypeNative:"],
+	"members": 						["members",							"dsAttrTypeNative:"],
+	"msdfsr-computerreferencebl": 	["msDFSR-ComputerReferenceBL",	 	"dsAttrTypeNative:"],
+	"msds-generationid": 			["msDS-GenerationId",				"dsAttrTypeNative:"],
+	"msds-supportedencryptiontypes":["msDS-SupportedEncryptionTypes",	"dsAttrTypeNative:"],
+	"modificationtimestamp": 		["ModificationTimestamp",			"dsAttrTypeStandard:"],
+	"name": 						["name",						 	"dsAttrTypeNative:"],
+	"networkaddress": 				["networkAddress",				 	"dsAttrTypeNative:"],
+	"networkview": 					["NetworkView", 					"dsAttrTypeStandard:"],
+	"nfshomedirectory": 			["NFSHomeDirectory",				"dsAttrTypeStandard:"],
+	"nodesaslrealm": 				["NodeSASLRealm", 					"dsAttrTypeStandard:"],
+	"note": 						["Note",							"dsAttrTypeStandard:"],//says this is for last name attribute???
+	"objectclass": 					["objectClass",						"dsAttrTypeNative:"],
+	"objectcategory": 				["objectCategory",					"dsAttrTypeNative:"],
+	"objectguid": 					["objectGUID",						"dsAttrTypeNative:"],
+	"objectsid": 					["objectSid",						"dsAttrTypeNative:"], 
+	"olcdatabase": 					["OLCDatabase", 					"dsAttrTypeStandard:"],
+	"olcdatabaseindex": 			["OLCDatabaseIndex", 				"dsAttrTypeStandard:"],
+	"olcsyncrepl": 					["OLCSyncRepl", 					"dsAttrTypeStandard:"],
+	"operatingsystem": 				["operatingSystem",					"dsAttrTypeNative:"],
+	"operatingsystemversion": 		["operatingSystemVersion",			"dsAttrTypeNative:"],
+	"owner": 						["Owner",							"dsAttrTypeStandard:"],
+	"ownerguid": 					["OwnerGUID",						"dsAttrTypeStandard:"],
+	"password": 					["Password",						"dsAttrTypeStandard:"],
+	"passwordplus": 				["PasswordPlus",					"dsAttrTypeStandard:"],//indicates authentication redirection
+	"passwordpolicyoptions": 		["PasswordPolicyOptions",			"dsAttrTypeStandard:"],
+	"passwordserverlist": 			["PasswordServerList",				"dsAttrTypeStandard:"],
+	"passwordserverlocation": 		["PasswordServerLocation",			"dsAttrTypeStandard:"],
+	"port": 						["Port",							"dsAttrTypeStandard:"],//which port a service is on
+	"presetuserisadmin": 			["PresetUserIsAdmin", 				"dsAttrTypeStandard:"],
+	"primarycomputerguid": 			["PrimaryComputerGUID",				"dsAttrTypeStandard:"],
+	"primarycomputerlist": 			["PrimaryComputerList", 			"dsAttrTypeStandard:"],
+	"primarygroupid": 				["PrimaryGroupID",					"dsAttrTypeStandard:"],
+	"profiles": 					["Profiles", 						"dsAttrTypeStandard:"],
+	"profilestimestamp": 			["ProfilesTimestamp", 				"dsAttrTypeStandard:"],
+	"realname": 					["RealName",						"dsAttrTypeStandard:"], //Yes, fullname maps to realname because... apple
+	"realuserid": 					["RealUserID",						"dsAttrTypeStandard:"],
+	"relativednprefix": 			["RelativeDNPrefix",				"dsAttrTypeStandard:"],//relative distinguished name,
+	"ridsetreferences": 			["rIDSetReferences",				"dsAttrTypeNative:"],
+	"samaccountname": 				["sAMAccountName",					"dsAttrTypeNative:"],
+	"samaccounttype": 				["sAMAccountType",					"dsAttrTypeNative:"],
+	"serverreferencebl": 			["serverReferenceBL",				"dsAttrTypeNative:"],
+	"serviceprincipalname": 		["servicePrincipalName",			"dsAttrTypeNative:"],
+	"shadowhashdata": 				["ShadowHashData", 					"dsAttrTypeNative:"],
+	"smbacctflags": 				["SMBAccountFlags",					"dsAttrTypeStandard:"],//account control flag
+	"smbgrouprid": 					["SMBGroupRID",						"dsAttrTypeStandard:"], //define PDC SMB interaction with DirectoryService
+	"smbhome": 						["SMBHome",							"dsAttrTypeStandard:"],//UNC address of a windows home directory mount point
+	"smbhomedrive": 				["SMBHomeDrive",					"dsAttrTypeStandard:"],
+	"smbprimarygroupsid": 			["SMBPrimaryGroupSID",				"dsAttrTypeStandard:"],
+	"smbpasswordlastset": 			["SMBPasswordLastSet",				"dsAttrTypeStandard:"],// used in SMB interaction
+	"smbprofilepath": 				["SMBProfilePath",					"dsAttrTypeStandard:"],//defines desktop management info
+	"smbrid": 						["SMBRID",							"dsAttrTypeStandard:"], //used in SMB interaction
+	"smbscriptpath": 				["SMBScriptPath",					"dsAttrTypeStandard:"],//define SMB login script path
+	"smbsid": 						["SMBSID",							"dsAttrTypeStandard:"], //define SMB Security ID
+	"smbuserworkstations": 			["SMBUserWorkstations",				"dsAttrTypeStandard:"],//list of workstations a user can log in from
+	"smblogofftime": 				["SMBLogoffTime",					"dsAttrTypeStandard:"],
+	"smblogontime": 				["SMBLogonTime",					"dsAttrTypeStandard:"],
+	"smb_createmask": 				["smb_createmask",					"dsAttrTypeNative:"],
+	"smb_directorymask": 			["smb_directorymask",				"dsAttrTypeNative:"],
+	"smb_guestaccess": 				["smb_guestaccess",					"dsAttrTypeNative:"],
+	"smb_name": 					["smb_name",						"dsAttrTypeNative:"],
+	"smb_shared":  					["smb_shared",						"dsAttrTypeNative:"],
+	"servicetype": 					["ServiceType",						"dsAttrTypeStandard:"],//define SMB login script path
+	"serviceslocator": 				["ServicesLocator", 				"dsAttrTypeStandard:"],
+	"setupadvertising": 			["SetupAssistantAdvertising",		"dsAttrTypeStandard:"],//raw service type of a service, ex: http or https for kODRecordTypeWebServer
+	"sharepoint_account_uuid": 		["sharepoint_account_uuid",			"dsAttrTypeNative:"],
+	"sharepoint_group_id": 			["sharepoint_group_id",				"dsAttrTypeNative:"],
+	"showinadvancedviewonly": 		["showInAdvancedViewOnly",			"dsAttrTypeNative:"],
+	"uniqueid": 					["UniqueID",						"dsAttrTypeStandard:"], //user's 32bit ID in legacy manner
+	"unlockoptions": 				["unlockOptions",					"dsAttrTypeNative:"],
+	"url": 							["URL", 							"dsAttrTypeStandard:"],
+	"users": 						["users",						 	"dsAttrTypeNative:"],
+	"usnchanged": 					["uSNChanged",						"dsAttrTypeNative:"],
+	"usncreated": 					["uSNCreated",						"dsAttrTypeNative:"], 
+	"useraccountcontrol": 			["userAccountControl",				"dsAttrTypeNative:"],
+	"usercertificate": 				["UserCertificate",					"dsAttrTypeStandard:"],
+	"userpkcs12data": 				["UserPKCS12Data",					"dsAttrTypeStandard:"],
+	"usershell": 					["UserShell",						"dsAttrTypeStandard:"],
+	"usersmimecertificate": 		["UserSMIMECertificate",			"dsAttrTypeStandard:"],
+	"webloguri": 					["WeblogURI",						"dsAttrTypeStandard:"],//URI of a user's weblog
+	"whenchanged": 					["whenChanged",						"dsAttrTypeNative:"],
+	"whencreated": 					["whenCreated",						"dsAttrTypeNative:"],
+	"_writers_usercertificate": 	["_writers_UserCertificate",		"dsAttrTypeNative:"],
+	"_writers_hint": 				["_writers_hint",					"dsAttrTypeNative:"],
+	"_writers_passwd": 				["_writers_passwd",				 	"dsAttrTypeNative:"],
+	"_writers_unlockoptions": 		["_writers_unlockOptions",			"dsAttrTypeNative:"],
+	"_writers_usercertificate": 	["_writers_UserCertificate",		"dsAttrTypeNative:"],
+	"xmlplist": 					["XMLPlist",						"dsAttrTypeStandard:"],//specify an XML Property List
+	"protocolnumber": 				["ProtocolNumber",					"dsAttrTypeStandard:"],
+	"rpcnumber": 					["RPCNumber",						"dsAttrTypeStandard:"],
+	"networknumber": 				["NetworkNumber",					"dsAttrTypeStandard:"],
+	"accesscontrolentry": 			["AccessControlEntry",				"dsAttrTypeStandard:"],
+	"authenticationauthority": 		["AuthenticationAuthority",			"dsAttrTypeStandard:"], //specify mechanism used to verify or set a user's password
+	"authorityrevocationlist": 		["AuthorityRevocationList", 		"dsAttrTypeStandard:"],
+	"automountinformation": 		["AutomountInformation",			"dsAttrTypeStandard:"],
+	"computers": 					["Computers",						"dsAttrTypeStandard:"],
+	"dnsname": 						["DNSName",							"dsAttrTypeStandard:"],
+	"group": 						["Group",							"dsAttrTypeStandard:"],//store a list of groups
+	"groupmembers": 				["GroupMembers",					"dsAttrTypeStandard:"], //specify GUID values of members of a group that are not groups
+	"groupmembership": 				["GroupMembership",					"dsAttrTypeStandard:"], //specify list of users that belong to a given group
+	"groupservices": 				["GroupServices",					"dsAttrTypeStandard:"],//XML plist to define group's services,
+	"homedirectory": 				["HomeDirectory",					"dsAttrTypeStandard:"],
+	"imhandle": 					["IMHandle",						"dsAttrTypeStandard:"],//user's instant messaging handles
+	"ipaddress": 					["IPAddress",						"dsAttrTypeStandard:"],
+	"ipv6address": 					["IPv6Address",						"dsAttrTypeStandard:"],
+	"kdcauthkey": 					["KDCAuthKey",						"dsAttrTypeStandard:"],//store a KDC master key
+	"kdcconfigdata": 				["KDCConfigData", 					"dsAttrTypeStandard:"],
+	"keywords": 					["Keywords", 						"dsAttrTypeStandard:"],
+	"ldapreadreplicas": 			["LDAPReadReplicas",				"dsAttrTypeStandard:"],//list of LDAP server URLs that can be used to read directory data
+	"ldapwritereplicas": 			["LDAPWriteReplicas",				"dsAttrTypeStandard:"],
+	"linkedidentity": 				["LinkedIdentity",					"dsAttrTypeNative:"],
+	"localerelay": 					["LocaleRelay", 					"dsAttrTypeStandard:"],
+	"localesubnets": 				["LocaleSubnets", 					"dsAttrTypeStandard:"],
+	"nestedgroups": 				["NestedGroups",					"dsAttrTypeStandard:"], //specify list of nested group GUID values in a group attribute
+	"netgroups": 					["NetGroups",						"dsAttrTypeStandard:"],//specify a list of net groups that a user or host record is a member of
+	"nickname": 					["NickName",						"dsAttrTypeStandard:"],
+	"organizationinfo": 			["OrganizationInfo",				"dsAttrTypeStandard:"],
+	"organizationname": 			["OrganizationName",				"dsAttrTypeStandard:"],
+	"pgppublickey": 				["PGPPublicKey",					"dsAttrTypeStandard:"],
+	"protocols": 					["Protocols",						"dsAttrTypeStandard:"],
+	"recordname": 					["RecordName",						"dsAttrTypeStandard:"],
+	"record_daemon_version": 		["record_daemon_version",			"dsAttrTypeNative:"],
+	"relationships": 				["Relationships",					"dsAttrTypeStandard:"],
+	"resourceinfo": 				["ResourceInfo",					"dsAttrTypeStandard:"],
+	"resourcetype": 				["ResourceType",					"dsAttrTypeStandard:"],
+	"authcredential": 				["AuthCredential",					"dsAttrTypeStandard:"],//stores an authentication credential used to authenticate to a directory
+	"daterecordcreated": 			["DateRecordCreated",				"dsAttrTypeStandard:"],
+	"kerberosflags": 				["KerberosFlags",					"dsAttrTypeNative:"],
+	"kerberosrealm": 				["KerberosRealm",					"dsAttrTypeStandard:"],
+	"ntdomaincomputeraccount": 		["NTDomainComputerAccount",			"dsAttrTypeStandard:"],//support kerberos SMB server services
+	"primaryntdomain": 				["PrimaryNTDomain",					"dsAttrTypeStandard:"],
+	"pwdagingpolicy": 				["PwdAgingPolicy",					"dsAttrTypeStandard:"],//record's password aging policy
+	"readonlynode": 				["ReadOnlyNode",					"dsAttrTypeStandard:"],
+	"authmethod": 					["AuthMethod",						"dsAttrTypeStandard:"],//specify a record's authentication method
+	"recordtype": 					["RecordType",						"dsAttrTypeStandard:"], //specify type of a record or directory node
+	"advertisedservices": 			["AdvertisedServices",				"dsAttrTypeStandard:"],//specify (Bounjour) advertised services
+	"networkinterfaces": 			["NetworkInterfaces",				"dsAttrTypeStandard:"],
+	"primarylocale": 				["PrimaryLocale",					"dsAttrTypeStandard:"]
 }
 var node_list = {
-	"network": 			$.kODNodeTypeNetwork,
-	"local": 			$.kODNodeTypeLocalNodes,
-	"config": 			$.kODNodeTypeConfigure,
-	"contacts": 		$.kODNodeTypeContacts
+	"network": 			0x2205,//$.kODNodeTypeNetwork,
+	"local": 			0x2200,//$.kODNodeTypeLocalNodes,
+	"config": 			0x2202,//$.kODNodeTypeConfigure,
+	"contacts": 		0x2204,//$.kODNodeTypeContacts
 }
 // helper functions to actually do the OD queries and return results
 function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_results=0, query_attributes="All", return_attributes=[null], nodetype='network'} = {}){
@@ -283,16 +283,13 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 	var node = Ref();
 	var query = Ref();
 	session = $.ODSession.defaultSession;
+	//console.log(session);
 	var fixed_return_attributes = [];
 	for(var i in return_attributes){
 		if(return_attributes[i] != null){
 			ret_attr_lower = return_attributes[i].toLowerCase();
 			if(attributes_list.hasOwnProperty(ret_attr_lower)){
-				if(attributes_list[ret_attr_lower][2] != ""){
-					fixed_return_attributes.push(attributes_list[ret_attr_lower][2] + attributes_list[ret_attr_lower][0]);
-				}else{
-					fixed_return_attributes.push(attributes_list[ret_attr_lower][1]);
-				}
+				fixed_return_attributes.push(attributes_list[ret_attr_lower][1] + attributes_list[ret_attr_lower][0]);
 			}
 		}else{
 			fixed_return_attributes.push(null);
@@ -303,12 +300,13 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 	}
 	if(attributes_list.hasOwnProperty(query_attributes.toLowerCase())){
 		query_attr_lower = query_attributes.toLowerCase();
-		query_attributes = attributes_list[query_attr_lower][1];
+		query_attributes = attributes_list[query_attr_lower][1] + attributes_list[query_attr_lower][0];
 	}
 	else{
 		console.log("query attribute " + query_attributes + " not found");
 		return;
 	}
+	//console.log(fixed_return_attributes);
 	node = $.ODNode.nodeWithSessionTypeError(session, node_list[nodetype], null);
 	//console.log("about to print subnode names\n");
 	//console.log(ObjC.deepUnwrap($.ODNodeCopySubnodeNames(node, $())));
@@ -320,17 +318,15 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 	query = $.ODQuery.queryWithNodeForRecordTypesAttributeMatchTypeQueryValuesReturnAttributesMaximumResultsError(
 	node, 
 	object_class[objectclass], //(objectclass) https://developer.apple.com/documentation/opendirectory/opendirectory_functions/record_types?language=objc
-	//$.kODAttributeTypeAllAttributes, //https://developer.apple.com/documentation/opendirectory/odattributetype?language=objc
-	query_attributes,
-	match_type[match], //(operator - equals, beginsWith, contains, etc) https://developer.apple.com/documentation/opendirectory/opendirectory_functions/match_types?language=objc
+	query_attributes, //set to recordname that we're looking to match
+	match_type[match], //( equals, beginsWith, contains, etc) https://developer.apple.com/documentation/opendirectory/opendirectory_functions/match_types?language=objc
 	value, // input query (like admin)
-	//return_attributes, // properties to return
 	fixed_return_attributes,
 	max_results, //maximum number of results, 0=all
-	null); //error
+	$()); //error
 	var results = query.resultsAllowingPartialError(false, null);
 	//results;
-	//console.log(results.count);
+	//console.log(results);
 	var output = {};
 	output[objectclass] = {};
 	for(var i = 0; i < results.count; i++){
@@ -352,35 +348,59 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 					val.push(array.objectAtIndex(k).js);
 				}
 			}
+			//var val = ObjC.deepUnwrap(attributes.valueForKey(keys.objectAtIndex(j)));
 			output[objectclass][i][key] = val;
 		}
 	}
 	return output;
 }
 function Get_OD_Node_Configuration({node="all"} = {}){
-	var session = $.ODSession.defaultSession;
-	var names = session.nodeNamesAndReturnError($());
+	let session = $.ODSession.defaultSession;
+	let names = session.nodeNamesAndReturnError($());
+	//console.log(names);
 	names = ObjC.deepUnwrap(names);
-	configuration = {};
-	for(var i in names){
+	let configuration = {};
+	for(let i in names){
 		//console.log(names[i]);
-		var config = session.configurationForNodename(names[i]);
+		let config = session.configurationForNodename(names[i]);
 		configuration[names[i]] = {};
-		configuration[names[i]]['nodeName'] = ObjC.deepUnwrap(config.nodeName);
+		if(config.nodeName.js !== undefined){
+			configuration[names[i]]['nodeName'] = config.nodeName.js;
+		}
 		configuration[names[i]]['trustAccount'] = ObjC.deepUnwrap(config.trustAccount);
 		configuration[names[i]]['trustKerberosPrincipal'] = ObjC.deepUnwrap(config.trustKerberosPrincipal);
 		configuration[names[i]]['trustMetaAccount'] = ObjC.deepUnwrap(config.trustMetaAccount);
 		configuration[names[i]]['trustType'] = ObjC.deepUnwrap(config.trustType);
-		configuration[names[i]]['trustUsesKerberosKeytab'] = ObjC.deepUnwrap(config.trustUsesKerberosKeytab);
+		configuration[names[i]]['trustUsesKerberosKeytab'] = config.trustUsesKerberosKeytab;
 		configuration[names[i]]['trustUsesMutualAuthentication'] = ObjC.deepUnwrap(config.trustUsesMutualAuthentication);
 		configuration[names[i]]['trustUsesSystemKeychain'] = ObjC.deepUnwrap(config.trustUsesSystemKeychain);
-		//configuration[names[i]]['defaultMappings'] = ObjC.deepUnwrap(config.defaultModuleEntries);
-		//configuration[names[i]]['authenticationModuleEntries'] = config.authenticationModuleEntries;
+		if(config.defaultModuleEntries !== undefined){
+			configuration[names[i]]['defaultMappings'] = ObjC.deepUnwrap(config.defaultModuleEntries);
+		}
+		if(config.authenticationModuleEntries !== undefined){
+			configuration[names[i]]['authenticationModuleEntries'] = config.authenticationModuleEntries;
+		}
 		configuration[names[i]]['virtualSubnodes'] = ObjC.deepUnwrap(config.virtualSubnodes);
 		configuration[names[i]]['templateName'] = ObjC.deepUnwrap(config.templateName);
 		configuration[names[i]]['preferredDestinationHostName'] = ObjC.deepUnwrap(config.preferredDestinationHostName);
 		configuration[names[i]]['preferredDestinationHostPort'] = ObjC.deepUnwrap(config.preferredDestinationHostPort);
-		//[names[i]]['discoveryModuleEntries'] = ObjC.deepUnwrap(config.discoveryModuleEntries);
+		if(config.discoveryModuleEntries !== undefined){
+			configuration[names[i]]['discoveryModuleEntries'] = ObjC.deepUnwrap(config.discoveryModuleEntries);
+		}
+	}
+	//node = $.ODNode.nodeWithSessionTypeError(session, $.kODNodeTypeLocalNodes, null);
+	node = $.ODNode.nodeWithSessionTypeError(session, 0x2200, null);
+	//var policies = $.ODNodeCopyAccountPolicies(node, $());
+	let policies = node.accountPoliciesAndReturnError($());
+	if(policies.js !== undefined){
+		configuration['Local_policies'] = ObjC.deepUnwrap(policies);
+	}
+	//node = $.ODNode.nodeWithSessionTypeError(session, $.kODNodeTypeNetwork, null);
+	node = $.ODNode.nodeWithSessionTypeError(session, 0x2205, null);
+	//var policies = $.ODNodeCopyAccountPolicies(node, $());
+	policies = node.accountPoliciesAndReturnError($());
+	if(policies.js !== undefined){
+		configuration['Network_policies'] = ObjC.deepUnwrap(policies);
 	}
 	return configuration;
 }
@@ -481,130 +501,6 @@ function ConvertFrom_SID({API=true, sid="S-1-5-21-3278496235-3004902057-12445875
 				return user;
 			}
 			return "Command executed returned no output: " + command;
-		}
-		catch(err){
-			return err.toString();
-		}
-	}
-}
-function Get_PathAcl({API=false, path="/",help=false} = {}){
-	//enumerates and makes readable formats for each ACL on that path
-	//ex for "\\SERVER\Share"
-	//remote shares need to be mounted first
-	//  will be mounted to /Volumes/SERVER/Share
-	//https://support.apple.com/kb/PH25344?locale=en_US&viewlocale=en_US
-	//	check out that affects things if I still need to deal with the right prefix
-	if(help){
-	    var output = "";
-		output += "\\nGet linux and mac specific ACLs on a file or folder.";
-		output += "\\n\"path\" should be any FULL path to a local file or folder. Be careful about escaping quotes though.";
-		output += "\\ncalled: Get_PathAcl({path:\"/Users/useraccount/Desktop\"});";
-		return output;
-	}
-	if (API == true){
-        return "API method not implemented yet";
-	}
-	else{
-		try{
-			//without using an API, the default way to get ACLs on a file/folder is with ls -le
-			//where the -e shows ACLs if there are additional ones outside of the standard POSIX ones
-			//sample output: -rw-r--r--+ 1 john users  175  5 Jun 00:23 foo
-			//				 0: user:dave allow write
-			output = currApp.doShellScript("ls -ale \"" + path + "\"");
-			return output;
-		}
-		catch(err){
-			return err.toString();
-		}
-	}
-}
-function Get_PathXattr({API=false, path="/", recurse=true, value=true, help=false} = {}){
-	//Similar to getting ACLs on a file/folder, this gets the extended attributes for it (xattr)
-	//can also get these with "ls -l@"
-	if(help){
-	    var output = "";
-		output += "\\nGet mac specific extended attributes on a file or folder.";
-		output += "\\n\"path\" should be any FULL path to a file or folder. Be careful about escaping quotes though.";
-		output += "\\n\"recurse\" should be true if you want to recursively view the extended attributes.";
-		output += "\\n\"value\" should be true if you also want to see the value of the attribute. Default is true.";
-		output += "\\ncalled: Get_PathXattr({path:\"/Users/useraccount\",recurse:true});";
-		return output;
-	}
-	if(API == true){
-        return "API method not implemented yet";
-	}
-	else{
-		command = "xattr";
-		if(recurse){
-			command += " -s";
-		}
-		if(value){
-			command += " -l";
-		}
-		command += " " + path;
-		try{
-			output = currApp.doShellScript(command);
-			return output;
-		}
-		catch(err){
-			return err.toString();
-		}
-	}
-}
-function Get_MountedVolumes({API=false, help=false} = {}){
-	//list out the current mounted volumes
-	//remote ones will be like:
-	// //user@host/share size size size % size size % /mount/point
-	if(help){
-	    var output = "";
-		output += "\\nGet the mounted volumes on the current computer";
-		output += "\\ncalled: Get_MountedVolumes()";
-		return output;
-	}
-	if (API == true){
-        return "API method not implemented yet";
-	}
-	else{
-		try{
-			output = currApp.doShellScript("df");
-			return output;
-		}
-		catch(err){
-			return err.toString();
-		}
-	}
-}
-function Set_MountVolume({API=false, user="", pass="", computerName="", remotePath="", localPath="", type="ntfs", help=false} = {}){
-	//mount remote volumes
-	if(help){
-	    var output = "";
-		output += "\\nMount a remote share on the current computer";
-		output += "\\n\"user\" should be a username in quotes.";
-		output += "\\n\"pass\" should be the password in quotes. This will be escaped with the JavaScript escape function.";
-		output += "\\n\"computerName\" is the name of the remote machine that has the share we want to mount.";
-		output += "\\n\"remotePath\" is the remote share we want to mount, such as \"ADMIN$\".";
-		output += "\\n\"localPath\" is the local mount point. This should already be created.";
-		output += "\\n\"type\" will typically be ntfs (which is default) for mounting windows shares.";
-		output += "\\ncalled: Set_MountVolume({user:\"mac\",pass:\"abc123!!!\",computerName:\"dc\",remotePath:\"ADMIN$\",localPath:\"/Users/localuser/testmount\"});";
-		return output;
-	}
-	command = "mount -t ";
-	if (API == true){
-        return "API method not implemented yet";
-	}
-	else{
-		if(type == "ntfs"){
-			command += "smbfs";
-		}
-		else{
-			command += type;
-		}
-		command += " //" + user + ":" + escape(pass) + "@" + computerName + "/" + remotePath + " " + localPath;
-		//example: mount -t smbfs //mac:abc123%21%21%21@dc/ADMIN$ /Users/testuser/testmount
-		//console.log(command);
-		try{
-			output = currApp.doShellScript(command);
-			return output;
 		}
 		catch(err){
 			return err.toString();
@@ -1156,6 +1052,7 @@ function Get_CurrentDomain(API=true,help=false){
 				return config[keys[i]]['trustKerberosPrincipal'].split("@")[1];
 			}
 		}
+		return "No domain found";
 	}
 	else{
 		try{
@@ -1177,23 +1074,24 @@ function Get_CurrentDomain(API=true,help=false){
 }
 function Get_CurrentNETBIOSDomain(API=true,help=false){
 	if(help){
-	    var output = "";
+	    let output = "";
 		output += "\\nGet the NETBIOS name of the current domain";
 		output += "\\ncalled: Get_CurrentNETBIOSDomain();";
 		return output;
 	}
 	if(API == true){
-        var config = Get_OD_Node_Configuration();
-		var keys = Object.keys(config);
-		for(var i in keys){
-			if(config[keys[i]]['nodeName'] != "Contacts" && config[keys[i]]['nodeName'] != "Search" && config[keys[i]]['nodeName']){
+        let config = Get_OD_Node_Configuration();
+		let keys = Object.keys(config);
+		for(let i in keys){
+			if(config[keys[i]].hasOwnProperty('nodeName') && config[keys[i]]['nodeName'] != "Contacts" && config[keys[i]]['nodeName'] != "Search"){
 				return config[keys[i]]['nodeName'];
 			}
 		}
+		return "No Domain Found";
 	}
 	else{
 		try{
-			output = currApp.doShellScript("echo show com.apple.opendirectoryd.ActiveDirectory | scutil");
+			let output = currApp.doShellScript("echo show com.apple.opendirectoryd.ActiveDirectory | scutil");
 			//<dictionary>{
 			//DomainForestName : test.local
 			//DomainGuid : 01FDCACC-C89D-45B8-8829-3BAB54490F6C
