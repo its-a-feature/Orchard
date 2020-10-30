@@ -560,6 +560,17 @@ function Get_DomainUser({API=true, user, attribute, requested_domain,limit=0, he
 		}
 	}
 }
+function Get_DomainUserViaAttribute({API=true, value, attribute, return_attributes_list=[null],limit=0, help=false} = {}){
+	if(help){
+		return "Queries Users for the `attribute` which contains `value` and returns all matching object's attributes specified in `return_attributes_list`."
+	}
+	if (API == true){
+		let query = Get_OD_ObjectClass({value:value, match:"Contains", query_attributes:attribute, max_results:limit, return_attributes:return_attributes_list});
+		return JSON.stringify(query, null, 2);
+	} else{
+		return "Only API supported";
+	}
+}
 function Get_LocalUser({API=true, user, attribute, limit=0, help=false} = {}){
 	//returns all users or specific user objects in AD
 	//can specify different properties they want returned
@@ -659,6 +670,19 @@ function Get_DomainComputer({API=true, computer, attribute, limit=0, requested_d
 			return err.toString();
 		}
 	}
+}
+function Get_DomainComputerViaAttribute({API=true, value, attribute, limit=0, return_attributes_list=[null],help=false} = {}){
+	//returns all computers or specific computer objects in AD
+	if(help){
+		return "Queries Computers for the `attribute` which contains `value` and returns all matching object's attributes specified in `return_attributes_list`."
+	}
+	if (API == true){
+		let query = Get_OD_ObjectClass({objectclass:"Computers", value:value, match:"Contains", query_attributes:attribute, max_results:limit, return_attributes:return_attributes_list});
+		return JSON.stringify(query, null, 2);
+	} else{
+		return "Only API supported";
+	}
+
 }
 function Get_LDAPSearch({API=false, currDomain, remoteDomain, numResults=0, query="", attribute,help=false} = {}){
 	if(help){
@@ -1138,13 +1162,3 @@ function Get_Forest(API=false,help=false){
 		}
 	}
 }
-//ConvertTo_SID({API:true, object:"TEST\\Domain Computers", type:"Groups",help:false});
-//ConvertFrom_SID({API:true, sid:"S-1-5-21-267508148-270493875-3204280241-515", type:"Groups",help:false});
-//Get_DomainUser({user:"lab_admin", attribute:"SMBSID, NFSHomeDirectory"});
-//Get_LocalUser({user:"root", attribute:"UserShell, RecordName"});
-//Get_DomainComputer({attribute:"servicePrincipalName, distinguishedName"});
-//Get_DomainGroup({group:"Domain Admins", attribute:"distinguishedName,member,memberOf"});
-//Get_DomainGroupMember({group:"admin"});
-//Get_LocalGroup({group:"admin", attribute:"GroupMembership,nestedGroups"});
-//Get_LocalGroupMember({group:"admin"});
-//console.log("auto executed on import\n" + Get_Forest(false));
