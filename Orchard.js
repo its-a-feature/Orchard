@@ -402,7 +402,7 @@ function Get_OD_Node_Configuration({node="all"} = {}){
 	if(policies.js !== undefined){
 		configuration['Network_policies'] = ObjC.deepUnwrap(policies);
 	}
-	return JSON.stringify(configuration, null 2);
+	return JSON.stringify(configuration, null, 2);
 }
 // main functions
 function ConvertTo_SID({API=true, object=".\\root", type="Users",help=false} = {}){
