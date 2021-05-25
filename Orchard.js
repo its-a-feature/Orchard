@@ -303,8 +303,7 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 		query_attributes = attributes_list[query_attr_lower][1] + attributes_list[query_attr_lower][0];
 	}
 	else{
-		console.log("query attribute " + query_attributes + " not found");
-		return;
+		return "query attribute " + query_attributes + " not found";
 	}
 	//console.log(fixed_return_attributes);
 	node = $.ODNode.nodeWithSessionTypeError(session, node_list[nodetype], null);
@@ -328,28 +327,42 @@ function Get_OD_ObjectClass({objectclass="Users", match="Any", value=null, max_r
 	//results;
 	//console.log(results);
 	var output = {};
-	output[objectclass] = {};
 	for(var i = 0; i < results.count; i++){
 		var error = Ref();
 		var attributes = results.objectAtIndex(i).recordDetailsForAttributesError($(),error);
 		var keys = attributes.allKeys;
-		output[objectclass][i] = {};
+		name_index = ObjC.deepUnwrap(attributes.valueForKey($("dsAttrTypeStandard:RecordName")))
+		if(Array.isArray(name_index)){
+			name_index = name_index[0]
+		}
+		if(nodetype === "network" && ObjC.deepUnwrap(attributes.valueForKey($("dsAttrTypeStandard:AppleMetaNodeLocation")))[0] === "/Local/Default"){
+			continue;
+		}
+		output[name_index] = {};
 		for(var j = 0; j < keys.count; j++){
 			var key = ObjC.unwrap(keys.objectAtIndex(j));
 			var array = attributes.valueForKey(keys.objectAtIndex(j));
 			var array_length = parseInt($.CFArrayGetCount(array));
 			var val = [];
 			for(var k = 0; k < array_length; k++){
-				if(!array.objectAtIndex(k).isKindOfClass($.NSString.class)){
-					//console.log(array.objectAtIndex(k).base64EncodedStringWithOptions(null).js);
-					val.push(array.objectAtIndex(k).base64EncodedStringWithOptions(null).js);
-				}else{
-					//console.log(array.objectAtIndex(k));
-					val.push(array.objectAtIndex(k).js);
+				if(fixed_return_attributes === null || fixed_return_attributes.includes("dsAttributesAll") || fixed_return_attributes.includes(keys.objectAtIndex(j).js)){
+					if(!array.objectAtIndex(k).isKindOfClass($.NSString.class)){
+						//console.log(array.objectAtIndex(k).base64EncodedStringWithOptions(null).js);
+						val.push(array.objectAtIndex(k).base64EncodedStringWithOptions(null).js);
+					}else{
+						//console.log(array.objectAtIndex(k));
+						val.push(array.objectAtIndex(k).js);
+					}
 				}
+				
 			}
 			//var val = ObjC.deepUnwrap(attributes.valueForKey(keys.objectAtIndex(j)));
-			output[objectclass][i][key] = val;
+			if(val.length > 0){
+				output[name_index][key] = val;
+			}
+		}
+		if(Object.keys(output[name_index]).length === 0){
+			delete output[name_index];
 		}
 	}
 	return output;
@@ -524,14 +537,14 @@ function Get_DomainUser({API=true, user, attribute, requested_domain,limit=0, he
 	if (API == true){
 		if(user){
 			if(attribute){
-				var query = Get_OD_ObjectClass({value:user, match:"Contains", query_attributes:"recordname", return_attributes:attribute.split(", "), max_results:limit});
+				var query = Get_OD_ObjectClass({value:user, match:"Contains", query_attributes:"recordname", return_attributes:attribute.split(","), max_results:limit});
 			}else{
 				var query = Get_OD_ObjectClass({value:user, match:"Contains", query_attributes:"recordname", max_results:limit});
 			}
 			return JSON.stringify(query, null, 2);
 		}
 		if(attribute){
-			var query = Get_OD_ObjectClass({return_attributes:attribute.split(", "), max_results:limit});
+			var query = Get_OD_ObjectClass({return_attributes:attribute.split(","), max_results:limit});
 			return JSON.stringify(query, null, 2);
 		}
 		return JSON.stringify(Get_OD_ObjectClass({max_results:limit}), null, 2);
